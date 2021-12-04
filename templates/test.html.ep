@@ -1,0 +1,13 @@
+% layout 'default';
+% title 'test';
+<h1>test page</h1>
+<% if ($method eq 'POST') { %>
+<p><%= $string %></p>
+<% } else { %>
+<form action="/test" method="post">
+  <label>Give me string:<br>
+    <input type="text" name="string"></label><br>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+<% } %>
