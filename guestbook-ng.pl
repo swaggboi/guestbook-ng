@@ -14,11 +14,11 @@ plugin 'Config';
 # Helpers
 helper pg => sub {
     state $pg = Mojo::Pg->new(
-        'postgres://'          .
+        'postgres://'            .
         app->config->{'pg_user'} .
-        ':'                    .
+        ':'                      .
         app->config->{'pg_pw'}   .
-        '@localhost/'          .
+        '@localhost/'            .
         app->config->{'pg_db'}
         );
 };

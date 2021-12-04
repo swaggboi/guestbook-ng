@@ -9,9 +9,7 @@ use Mojo::Base -base, -signatures;
 has 'pg';
 
 sub new($class, $pg, $object) {
-    bless {
-        $pg => $object
-    }
+    bless {$pg => $object}
 }
 
 sub test_model($self, $string) {
