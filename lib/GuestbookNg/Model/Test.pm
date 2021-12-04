@@ -7,7 +7,7 @@ use warnings;
 use experimental qw{signatures};
 
 sub new($class) {
-    bless {}, $class
+    bless {}
 }
 
 sub test_model($self, $string) {
