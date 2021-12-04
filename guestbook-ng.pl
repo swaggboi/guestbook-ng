@@ -14,7 +14,7 @@ get '/' => sub ($c) {
 } => 'index';
 
 any '/test' => sub ($c) {
-    my $method = $c->req->method;
+    my $method = $c->req->method();
     my $string = $tm->test_model($c->param('string'));
 
     $c->render(method => $method, string => $string);
