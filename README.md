@@ -26,4 +26,5 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
+1. Create hostname k/v pair in conf file
 1. Create rows in table
