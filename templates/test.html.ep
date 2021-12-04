@@ -2,7 +2,7 @@
 % title 'test';
 <h1>test page</h1>
 <% if ($method eq 'POST') { %>
-<p><%= $string %></p>
+<p><%= $string %> at <%= $time =></p>
 <% } else { %>
 <form action="/test" method="post">
   <label>Give me string:<br>
