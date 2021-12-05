@@ -29,9 +29,13 @@ helper test => sub {
     state $test = GuestbookNg::Model::Test->new(pg => shift->pg)
 };
 
+helper message => sub {
+    state $test = GuestbookNg::Model::Message->new(pg => shift->pg)
+};
+
 # Routes
 under sub ($c) {
-    $c->test->create_table()
+    $c->pg->migrations->from_dir('migrations')->migrate(1);
 };
 
 get '/' => sub ($c) {

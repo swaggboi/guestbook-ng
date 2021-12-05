@@ -14,10 +14,6 @@ sub test_model($self, $string) {
     "you've supplied: $string"
 }
 
-sub create_table($self) {
-    $self->pg->migrations->from_dir('migrations')->migrate(1);
-}
-
 sub now($self) {
     $self->pg->db->query('SELECT NOW() AS now')->text()
 }
