@@ -2,8 +2,6 @@
 
 package GuestbookNg::Model::Test;
 
-use strict;
-use warnings;
 use Mojo::Base -base, -signatures;
 
 has 'pg';
