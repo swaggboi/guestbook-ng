@@ -7,6 +7,8 @@ use Mojolicious::Lite -signatures;
 use Mojo::Pg;
 use lib 'lib';
 use GuestbookNg::Model::Test;
+use GuestbookNg::Model::Message;
+use Data::Dumper; # Uncomment for debugging
 
 # Plugins
 plugin 'Config';
@@ -30,7 +32,7 @@ helper test => sub {
 };
 
 helper message => sub {
-    state $test = GuestbookNg::Model::Message->new(pg => shift->pg)
+    state $message = GuestbookNg::Model::Message->new(pg => shift->pg)
 };
 
 # Routes
@@ -39,7 +41,9 @@ under sub ($c) {
 };
 
 get '/' => sub ($c) {
-    $c->render()
+    my $posts = $c->message->get_posts();
+
+    $c->render(posts => $posts);
 } => 'index';
 
 any '/test' => sub ($c) {
@@ -53,6 +57,19 @@ any '/test' => sub ($c) {
         string => $string,
         time   => $time
         );
+};
+
+any '/post' => sub ($c) {
+    if ($c->req->method() eq 'POST') {
+        my $name    = $c->param('name');
+        my $message = $c->param('message');
+
+        $c->message->send_post($name, $message);
+        $c->redirect_to('index');
+    }
+    else {
+        $c->render()
+    }
 };
 
 # Send it

@@ -27,5 +27,6 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. Create hostname k/v pair in conf file
-1. Create rows in table
+1. Add tests for `/post` route
+1. Probably rename `/post` to `/sign`
+1. Remove the Test model and clean up

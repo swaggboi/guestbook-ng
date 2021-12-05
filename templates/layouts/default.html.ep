@@ -5,7 +5,7 @@
 </head>
 <body>
 <center>
-  <h1><%= title %></h1>
+  <h1>Guestbook-NG</h1>
   <!-- Nav table -->
   <table>
     <tr>
@@ -13,10 +13,14 @@
       <td>&nbsp;</td>
       <td><%= link_to Test => 'test' %></td>
       <td>&nbsp;</td>
-      <td><%= link_to Post => 'post' %></td>
+      <td><%= link_to Sign => 'post' %></td>
     </tr>
   </table>
   <%= content %>
+  <footer>
+    <p><i>Maximize your dynamic innovation using battle-tested deep
+        learning models.</i></p>
+  </footer>
 </center>
 </body>
 </html>
