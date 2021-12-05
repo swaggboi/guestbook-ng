@@ -35,11 +35,10 @@ helper message => sub {
     state $message = GuestbookNg::Model::Message->new(pg => shift->pg)
 };
 
-# Routes
-under sub ($c) {
-    $c->pg->migrations->from_dir('migrations')->migrate(1)
-};
+# Get the DB ready
+app->pg->migrations->from_dir('migrations')->migrate(1);
 
+# Routes
 get '/' => sub ($c) {
     my $posts = $c->message->get_posts();
 
