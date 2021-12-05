@@ -1,6 +1,6 @@
 % layout 'default';
-% title 'test';
-<h1>test page</h1>
+% title 'Test';
+<h2>test page</h2>
 <% if ($method eq 'POST') { %>
 <p><%= $string %> at <%= $time =></p>
 <% } else { %>

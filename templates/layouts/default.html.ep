@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= title %></title>
+  <title>Guestbook-NG - <%= title %></title>
 </head>
 <body>
-<%= content %>
+<center>
+  <h1><%= title %></h1>
+  <!-- Nav table -->
+  <table>
+    <tr>
+      <td><%= link_to Home => 'index' %></td>
+      <td>&nbsp;</td>
+      <td><%= link_to Test => 'test' %></td>
+      <td>&nbsp;</td>
+      <td><%= link_to Post => 'post' %></td>
+    </tr>
+  </table>
+  <%= content %>
+</center>
 </body>
 </html>
