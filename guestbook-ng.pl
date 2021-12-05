@@ -37,7 +37,7 @@ helper message => sub {
 
 # Routes
 under sub ($c) {
-    $c->pg->migrations->from_dir('migrations')->migrate(1);
+    $c->pg->migrations->from_dir('migrations')->migrate(1)
 };
 
 get '/' => sub ($c) {
@@ -73,4 +73,5 @@ any '/post' => sub ($c) {
 };
 
 # Send it
+app->secrets(app->config->{'secrets'}) || die $@;
 app->start();
