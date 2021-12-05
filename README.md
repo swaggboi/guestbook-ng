@@ -11,7 +11,8 @@ Mojolicious blockchain technologies powered by AI.
         secrets => ['a_secret_here'],
         pg_user => 'guestbooker',
         pg_pw   => 'a_password_here',
-        pg_db   => 'guestbook'
+        pg_db   => 'guestbook',
+        pg_host => 'localhost'
     }
 
 ## Testing
