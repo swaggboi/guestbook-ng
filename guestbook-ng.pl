@@ -18,7 +18,9 @@ helper pg => sub {
         app->config->{'pg_user'} .
         ':'                      .
         app->config->{'pg_pw'}   .
-        '@localhost/'            .
+        '@'                      .
+        app->config->{'pg_host'} .
+        '/'                      .
         app->config->{'pg_db'}
         );
 };

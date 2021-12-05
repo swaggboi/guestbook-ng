@@ -15,17 +15,7 @@ sub test_model($self, $string) {
 }
 
 sub create_table($self) {
-    $self->pg->migrations->from_string(
-        "-- 1 up
-        CREATE TABLE IF NOT EXISTS messages (
-        id int,
-        date timestamp with time zone,
-        name varchar(255),
-        msg varchar(255)
-        );
-        -- 1 down
-        DROP TABLE messages;"
-        )->migrate();
+    $self->pg->migrations->from_dir('migrations')->migrate(1);
 }
 
 sub now($self) {

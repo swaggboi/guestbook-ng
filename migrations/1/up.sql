@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS messages (
+    id SERIAL PRIMARY KEY,
+    date TIMESTAMPTZ,
+    name VARCHAR(64),
+    msg VARCHAR(255)
+);
