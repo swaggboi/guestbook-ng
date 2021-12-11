@@ -15,15 +15,18 @@ plugin 'Config';
 
 # Helpers
 helper pg => sub {
+    my $env =
+        app->mode eq 'development' ? 'dev_env' : 'prod_env';
+
     state $pg = Mojo::Pg->new(
-        'postgres://'            .
-        app->config->{'pg_user'} .
-        ':'                      .
-        app->config->{'pg_pw'}   .
-        '@'                      .
-        app->config->{'pg_host'} .
-        '/'                      .
-        app->config->{'pg_db'}
+        'postgres://'                    .
+        app->config->{$env}->{'pg_user'} .
+        ':'                              .
+        app->config->{$env}->{'pg_pw'}   .
+        '@'                              .
+        app->config->{$env}->{'pg_host'} .
+        '/'                              .
+        app->config->{$env}->{'pg_db'}
         );
 };
 

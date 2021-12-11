@@ -8,11 +8,20 @@ Mojolicious blockchain technologies powered by AI.
 
     $ cat guestbook-ng.conf
     {
-        secrets => ['a_secret_here'],
-        pg_user => 'guestbooker',
-        pg_pw   => 'a_password_here',
-        pg_db   => 'guestbook',
-        pg_host => 'localhost'
+        secrets  => ['a_secret_here'],
+        dev_env  => {
+            pg_user => 'guestbooker',
+            pg_pw   => 'a_password_here',
+            pg_db   => 'guestbook',
+            pg_host => 'localhost'
+        },
+        prod_env => {
+            pg_user => 'guestbooker',
+            pg_pw   => 'prod_password_here',
+            pg_db   => 'guestbook',
+            pg_host => 'prod.db.com'
+    
+        }
     }
 
 ## Testing
