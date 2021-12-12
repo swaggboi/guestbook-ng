@@ -36,4 +36,4 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. Page through previous posts instead of dumping all on one page
+1. Move paging logic out of controller into model
