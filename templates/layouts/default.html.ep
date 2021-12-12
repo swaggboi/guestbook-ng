@@ -9,11 +9,9 @@
   <!-- Nav table -->
   <table>
     <tr>
-      <td><%= link_to Home => 'index' %></td>
+      <td><%= link_to View => 'index' %></td>
       <td>&nbsp;</td>
-      <td><%= link_to Test => 'test' %></td>
-      <td>&nbsp;</td>
-      <td><%= link_to Sign => 'post' %></td>
+      <td><%= link_to Sign => 'sign' %></td>
     </tr>
   </table>
   <%= content %>

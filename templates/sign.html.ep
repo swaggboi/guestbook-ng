@@ -1,6 +1,6 @@
 % layout 'default';
 % title 'New Post';
-<h2>Create a New Post</h2>
+<h2>Sign the Guestbook</h2>
 <form method="post">
   <table>
     <tr>
