@@ -1,7 +1,7 @@
 % layout 'default';
 % title 'Home';
 <h2>Messages from the World Wide Web</h2>
-<% for my $row (reverse @$posts) { %>
+<% for my $row (reverse @$view_posts) { %>
 <table>
   <tr>
     <th>Date:</th>
@@ -18,3 +18,4 @@
 </table>
 <br>
 <% } %>
+<%= pagination($this_page, $last_page, '?page={page}') %>

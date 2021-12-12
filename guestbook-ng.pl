@@ -11,6 +11,7 @@ use Data::Dumper; # Uncomment for debugging
 
 # Plugins
 plugin 'Config';
+plugin 'TagHelpers::Pagination';
 
 # Helpers
 helper pg => sub {
@@ -38,9 +39,21 @@ app->pg->migrations->from_dir('migrations')->migrate(1);
 
 # Routes
 get '/' => sub ($c) {
-    my $posts = $c->message->get_posts();
+    my $max_posts  = 5;
+    my $posts      = $c->message->get_posts();
+    my $last_page  = sprintf('%d', scalar(@$posts) / $max_posts) + 1;
+    my $this_page  = $c->param('page') || $last_page;
+    my $last_post  = $this_page * $max_posts - 1;
+    my $first_post = $last_post - $max_posts + 1;
+    my @view_posts = grep defined, @$posts[$first_post..$last_post];
 
-    $c->render(posts => $posts);
+    $c->stash(
+        view_posts => \@view_posts,
+        this_page  => $this_page,
+        last_page  => $last_page
+        );
+
+    $c->render();
 } => 'index';
 
 any '/sign' => sub ($c) {
