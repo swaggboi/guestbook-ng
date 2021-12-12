@@ -36,6 +36,4 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. Add tests for `/post` route
-1. Probably rename `/post` to `/sign`
-1. Remove the Test model and clean up
+1. Page through previous posts instead of dumping all on one page
