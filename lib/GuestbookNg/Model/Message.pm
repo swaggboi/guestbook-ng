@@ -6,8 +6,11 @@ use Mojo::Base -base, -signatures;
 
 has 'pg';
 
-sub new($class, $pg, $object) {
-    bless {$pg => $object}
+sub new($class, $pg, $pg_object) {
+    bless {
+        $pg       => $pg_object,
+        max_posts => 5
+    }
 }
 
 sub get_posts($self) {
@@ -19,6 +22,21 @@ sub send_post($self, $name, $msg) {
         'INSERT INTO messages (date, name, msg)
          VALUES (NOW(), ?, ?);', $name, $msg
         )
+}
+
+sub view_posts($self, $this_page, $last_page, @posts) {
+    my $last_post  = $this_page * $self->{'max_posts'} - 1;
+    my $first_post = $last_post - $self->{'max_posts'} + 1;
+
+    grep defined, @posts[$first_post..$last_post];
+}
+
+sub max_posts($self, $value = undef) {
+    $self->{'max_posts'} = $value ? $value : $self->{'max_posts'}
+}
+
+sub get_last_page($self, @posts) {
+    sprintf('%d', scalar(@posts) / $self->{'max_posts'}) + 1
 }
 
 1;

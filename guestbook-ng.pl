@@ -15,8 +15,7 @@ plugin 'TagHelpers::Pagination';
 
 # Helpers
 helper pg => sub {
-    my $env =
-        app->mode eq 'development' ? 'dev_env' : 'prod_env';
+    my $env = app->mode eq 'development' ? 'dev_env' : 'prod_env';
 
     state $pg = Mojo::Pg->new(
         'postgres://'                    .
@@ -34,18 +33,12 @@ helper message => sub {
     state $message = GuestbookNg::Model::Message->new(pg => shift->pg)
 };
 
-# Get the DB ready
-app->pg->migrations->from_dir('migrations')->migrate(1);
-
 # Routes
 get '/' => sub ($c) {
-    my $max_posts  = 5;
     my $posts      = $c->message->get_posts();
-    my $last_page  = sprintf('%d', scalar(@$posts) / $max_posts) + 1;
+    my $last_page  = $c->message->get_last_page(@$posts);
     my $this_page  = $c->param('page') || $last_page;
-    my $last_post  = $this_page * $max_posts - 1;
-    my $first_post = $last_post - $max_posts + 1;
-    my @view_posts = grep defined, @$posts[$first_post..$last_post];
+    my @view_posts = $c->message->view_posts($this_page, $last_page, @$posts);
 
     $c->stash(
         view_posts => \@view_posts,
@@ -71,4 +64,10 @@ any '/sign' => sub ($c) {
 
 # Send it
 app->secrets(app->config->{'secrets'}) || die $@;
+
+app->message->max_posts(app->config->{'max_posts'})
+    if app->config->{'max_posts'};
+
+app->pg->migrations->from_dir('migrations')->migrate(1);
+
 app->start();
