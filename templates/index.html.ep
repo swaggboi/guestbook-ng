@@ -1,21 +1,24 @@
 % layout 'default';
 % title 'Home';
 <h2>Messages from the World Wide Web</h2>
-<% for my $row (reverse @$view_posts) { %>
 <table>
-  <tr>
-    <th>Date:</th>
-    <td><%= @$row[0] %></td>
-  </tr>
-  <tr>
-    <th>Name:</th>
-    <td><%= @$row[1] %></td>
-  </tr>
-  <tr>
-    <th>Message:</th>
-    <td><%= @$row[2] %></td>
-  </tr>
-</table>
-<br>
+<% for my $row (reverse @$view_posts) { %>
+<tr>
+  <th>Date:</th>
+  <td><%= @$row[0] %></td>
+</tr>
+<tr>
+  <th>Name:</th>
+  <td><%= @$row[1] %></td>
+</tr>
+<tr>
+  <th>Message:</th>
+  <td><%= @$row[2] %></td>
+</tr>
+<tr>
+  <th>&nbsp;</th>
+  <td>&nbsp;</td>
+</tr>
 <% } %>
+</table>
 <%= pagination($this_page, $last_page, '?page={page}') %>
