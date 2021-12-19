@@ -12,7 +12,7 @@
       <td><%= text_area 'message', cols => 40, rows => 6 %></td>
     </tr>
     <tr>
-      <th>Swagg CAPTCHA:</th>
+      <th>Swagg CAPTCHA™:</th>
       <td>
         <%= radio_button answer => 0 %>
         <%= label_for answer => "I don\'t want to post" %>
