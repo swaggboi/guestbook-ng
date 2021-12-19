@@ -21,7 +21,7 @@ sub get_posts($self) {
                   ORDER BY date DESC;')->arrays()
 }
 
-sub send_post($self, $name, $msg) {
+sub create_post($self, $name, $msg) {
     $self->pg->db->query(
         'INSERT INTO messages (date, name, msg)
          VALUES (NOW(), ?, ?);', $name, $msg

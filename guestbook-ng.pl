@@ -63,7 +63,7 @@ any [qw{GET POST}], '/sign' => sub ($c) {
         my $message = $c->param('message');
         my $answer  = $c->param('answer');
 
-        $c->message->send_post($name, $message) if $answer;
+        $c->message->create_post($name, $message) if $answer;
         $c->redirect_to('index');
     }
     else {

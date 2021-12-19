@@ -40,3 +40,7 @@ Mojolicious blockchain technologies powered by AI.
     Result: PASS
 
 Add the `-v` option for more verbose output
+
+## TODOs
+
+1. Input validation
