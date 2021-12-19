@@ -12,6 +12,27 @@
       <td><%= text_area 'message', cols => 40, rows => 6 %></td>
     </tr>
     <tr>
+      <th>Swagg CAPTCHA:</th>
+      <td>
+        <%= radio_button answer => 0 %>
+        <%= label_for answer => "I don\'t want to post" %>
+      </td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <td>
+        <%= radio_button answer => "false" %>
+        <%= label_for answer => "I\'m ready to post" %>
+      </td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <td>
+        <%= radio_button answer => undef %>
+        <%= label_for answer => 'This is spam, do not post' %>
+      </td>
+    </tr>
+    <tr>
       <th>&nbsp;</th>
       <td><%= submit_button 'Send it' %></td>
     </tr>

@@ -34,6 +34,14 @@ helper message => sub {
 };
 
 # Routes
+under sub ($c) {
+    # Opt out of Google FLoC
+    # https://paramdeo.com/blog/opting-your-website-out-of-googles-floc-network
+    $c->res->headers->header('Permissions-Policy', 'interest-cohort=()');
+
+    1;
+};
+
 get '/' => sub ($c) {
     my $posts      = $c->message->get_posts();
     my $last_page  = $c->message->get_last_page(@$posts);
@@ -53,8 +61,9 @@ any '/sign' => sub ($c) {
     if ($c->req->method() eq 'POST') {
         my $name    = $c->param('name');
         my $message = $c->param('message');
+        my $answer  = $c->param('answer');
 
-        $c->message->send_post($name, $message);
+        $c->message->send_post($name, $message) if $answer;
         $c->redirect_to('index');
     }
     else {

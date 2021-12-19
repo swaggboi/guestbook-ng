@@ -36,7 +36,13 @@ sub max_posts($self, $value = undef) {
 }
 
 sub get_last_page($self, @posts) {
-    sprintf('%d', scalar(@posts) / $self->{'max_posts'}) + 1
+    # Add a page if we have "remainder" posts
+    if (scalar(@posts) % $self->{'max_posts'}) {
+        sprintf('%d', scalar(@posts) / $self->{'max_posts'}) + 1
+    }
+    else {
+        sprintf('%d', scalar(@posts) / $self->{'max_posts'})
+    }
 }
 
 1;
