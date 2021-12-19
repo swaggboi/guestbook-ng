@@ -77,6 +77,6 @@ app->secrets(app->config->{'secrets'}) || die $@;
 app->message->max_posts(app->config->{'max_posts'})
     if app->config->{'max_posts'};
 
-app->pg->migrations->from_dir('migrations')->migrate(1);
+app->pg->migrations->from_dir('migrations')->migrate(2);
 
 app->start();
