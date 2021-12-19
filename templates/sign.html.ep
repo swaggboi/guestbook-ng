@@ -12,7 +12,7 @@
       <td><%= text_area 'message', cols => 40, rows => 6 %></td>
     </tr>
     <tr>
-      <th>Swagg CAPTCHA™:</th>
+      <th>SwaggCAPTCHA™:</th>
       <td>
         <%= radio_button answer => 0 %>
         <%= label_for answer => "I don\'t want to post" %>
@@ -22,7 +22,7 @@
       <th>&nbsp;</th>
       <td>
         <%= radio_button answer => "false" %>
-        <%= label_for answer => "I\'m ready to post" %>
+        <%= label_for answer => "I\'m ready to post (choose this one)" %>
       </td>
     </tr>
     <tr>

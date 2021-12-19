@@ -15,7 +15,7 @@ plugin 'TagHelpers::Pagination';
 
 # Helpers
 helper pg => sub {
-    my $env = app->mode eq 'development' ? 'dev_env' : 'prod_env';
+    my $env = app->mode() eq 'development' ? 'dev_env' : 'prod_env';
 
     state $pg = Mojo::Pg->new(
         'postgres://'                    .
@@ -57,7 +57,7 @@ get '/' => sub ($c) {
     $c->render();
 } => 'index';
 
-any '/sign' => sub ($c) {
+any [qw{GET POST}], '/sign' => sub ($c) {
     if ($c->req->method() eq 'POST') {
         my $name    = $c->param('name');
         my $message = $c->param('message');
