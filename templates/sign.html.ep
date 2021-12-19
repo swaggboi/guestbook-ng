@@ -1,5 +1,5 @@
 % layout 'default';
-% title 'New Post';
+% title 'Sign';
 <h2>Sign the Guestbook</h2>
 <form method="post">
   <table>
@@ -15,21 +15,21 @@
       <th>SwaggCAPTCHA™:</th>
       <td>
         <%= radio_button answer => 0 %>
-        <%= label_for answer => "I don\'t want to post" %>
+        <%= label_for answer => 'I don\'t want to sign' %>
       </td>
     </tr>
     <tr>
       <th>&nbsp;</th>
       <td>
         <%= radio_button answer => "false" %>
-        <%= label_for answer => "I\'m ready to post (choose this one)" %>
+        <%= label_for answer => 'I\'m ready to sign (choose this one)' %>
       </td>
     </tr>
     <tr>
       <th>&nbsp;</th>
       <td>
         <%= radio_button answer => undef %>
-        <%= label_for answer => 'This is spam, do not post' %>
+        <%= label_for answer => 'This is spam/I\'m a bot, do not sign' %>
       </td>
     </tr>
     <tr>

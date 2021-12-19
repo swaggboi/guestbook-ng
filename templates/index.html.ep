@@ -1,5 +1,5 @@
 % layout 'default';
-% title 'Home';
+% title 'View';
 <h2>Messages from the World Wide Web</h2>
 <table>
 <% for my $row (@$view_posts) { %>

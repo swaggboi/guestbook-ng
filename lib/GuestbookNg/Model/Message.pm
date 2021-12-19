@@ -28,7 +28,9 @@ sub send_post($self, $name, $msg) {
         )
 }
 
-sub view_posts($self, $this_page, $last_page, @posts) {
+sub view_posts($self, $this_page, $last_page = undef, @posts) {
+    $last_page //= get_last_page(@posts);
+
     my $last_post  = $this_page * $self->{'max_posts'} - 1;
     my $first_post = $last_post - $self->{'max_posts'} + 1;
 
