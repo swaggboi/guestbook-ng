@@ -45,7 +45,7 @@ under sub ($c) {
 get '/' => sub ($c) {
     my $posts      = $c->message->get_posts();
     my $last_page  = $c->message->get_last_page(@$posts);
-    my $this_page  = $c->param('page') || $last_page;
+    my $this_page  = $c->param('page') || 1;
     my @view_posts = $c->message->view_posts($this_page, $last_page, @$posts);
 
     $c->stash(

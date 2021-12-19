@@ -14,7 +14,11 @@ sub new($class, $pg, $pg_object) {
 }
 
 sub get_posts($self) {
-    $self->pg->db->query('SELECT date, name, msg FROM messages;')->arrays()
+    $self->pg->db
+        ->query('SELECT to_char(date, \'Dy Mon DD HH:MI:SS AM TZ YYYY\'),
+                        name, msg
+                   FROM messages
+                  ORDER BY date DESC;')->arrays()
 }
 
 sub send_post($self, $name, $msg) {
