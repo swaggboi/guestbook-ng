@@ -15,13 +15,13 @@
       <th>SwaggCAPTCHA™:</th>
       <td>
         <%= radio_button answer => 0 %>
-        <%= label_for answer => 'I don\'t want to sign' %>
+        <%= label_for answer => 'I don\'t want to sign (wrong answer)' %>
       </td>
     </tr>
     <tr>
       <th>&nbsp;</th>
       <td>
-        <%= radio_button answer => "false" %>
+        <%= radio_button answer => 'false' %>
         <%= label_for answer => 'I\'m ready to sign (choose this one)' %>
       </td>
     </tr>
