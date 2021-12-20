@@ -58,7 +58,7 @@ get '/' => sub ($c) {
 } => 'index';
 
 any [qw{GET POST}], '/sign' => sub ($c) {
-    if ($c->req->method() eq 'POST') {
+    if ($c->param('name') && $c->param('message')) {
         my $name    = $c->param('name');
         my $message = $c->param('message');
         my $answer  = $c->param('answer');
@@ -77,6 +77,6 @@ app->secrets(app->config->{'secrets'}) || die $@;
 app->message->max_posts(app->config->{'max_posts'})
     if app->config->{'max_posts'};
 
-app->pg->migrations->from_dir('migrations')->migrate(2);
+app->pg->migrations->from_dir('migrations')->migrate(3);
 
 app->start();

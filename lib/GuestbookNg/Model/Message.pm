@@ -15,16 +15,19 @@ sub new($class, $pg, $pg_object) {
 
 sub get_posts($self) {
     $self->pg->db
-        ->query('SELECT to_char(date, \'Dy Mon DD HH:MI:SS AM TZ YYYY\'),
-                        name, msg
+        ->query('SELECT to_char(
+                                message_date,
+                                \'Dy Mon DD HH:MI:SS AM TZ YYYY\'
+                        ),
+                        visitor_name, message
                    FROM messages
-                  ORDER BY date DESC;')->arrays()
+                  ORDER BY message_date DESC;')->arrays()
 }
 
-sub create_post($self, $name, $msg) {
+sub create_post($self, $name, $message) {
     $self->pg->db->query(
-        'INSERT INTO messages (date, name, msg)
-         VALUES (NOW(), ?, ?);', $name, $msg
+        'INSERT INTO messages (message_date, visitor_name, message)
+         VALUES (NOW(), ?, ?);', $name, $message
         )
 }
 
