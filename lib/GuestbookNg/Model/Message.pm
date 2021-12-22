@@ -14,21 +14,24 @@ sub new($class, $pg, $pg_object) {
 }
 
 sub get_posts($self) {
-    $self->pg->db
-        ->query('SELECT to_char(
-                            message_date,
-                            \'Dy Mon DD HH:MI:SS AM TZ YYYY\'
-                        ),
-                        visitor_name, message
-                   FROM messages
-                  ORDER BY message_date DESC;')->arrays()
+    $self->pg->db->query(<<~'END_SQL')->arrays()
+        SELECT to_char(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
+               visitor_name,
+               message
+          FROM messages
+         ORDER BY message_date DESC;
+       END_SQL
 }
 
 sub create_post($self, $name, $message) {
     $self->pg->db->query(
         'INSERT INTO messages (message_date, visitor_name, message)
          VALUES (NOW(), ?, ?);', $name, $message
-        )
+        );
+    $self->pg-db->query(<<~'END_SQL', $name, $message);
+        INSERT INTO messages (message_date, visitor_name, message)
+        VALUES (NOW(), ?, ?);
+       END_SQL
 }
 
 sub view_posts($self, $this_page, $last_page = undef, @posts) {
