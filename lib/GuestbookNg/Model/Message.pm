@@ -16,8 +16,8 @@ sub new($class, $pg, $pg_object) {
 sub get_posts($self) {
     $self->pg->db
         ->query('SELECT to_char(
-                                message_date,
-                                \'Dy Mon DD HH:MI:SS AM TZ YYYY\'
+                            message_date,
+                            \'Dy Mon DD HH:MI:SS AM TZ YYYY\'
                         ),
                         visitor_name, message
                    FROM messages
@@ -41,7 +41,7 @@ sub view_posts($self, $this_page, $last_page = undef, @posts) {
 }
 
 sub max_posts($self, $value = undef) {
-    $self->{'max_posts'} = $value ? $value : $self->{'max_posts'}
+    $self->{'max_posts'} = $value // $self->{'max_posts'}
 }
 
 sub get_last_page($self, @posts) {
