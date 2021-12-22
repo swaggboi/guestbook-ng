@@ -24,11 +24,7 @@ sub get_posts($self) {
 }
 
 sub create_post($self, $name, $message) {
-    $self->pg->db->query(
-        'INSERT INTO messages (message_date, visitor_name, message)
-         VALUES (NOW(), ?, ?);', $name, $message
-        );
-    $self->pg-db->query(<<~'END_SQL', $name, $message);
+    $self->pg-db->query(<<~'END_SQL', $name, $message)
         INSERT INTO messages (message_date, visitor_name, message)
         VALUES (NOW(), ?, ?);
        END_SQL
