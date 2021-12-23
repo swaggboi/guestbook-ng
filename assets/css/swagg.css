@@ -1,0 +1,75 @@
+body {
+    cursor: url('/misc/piz_normal_p1.cur'), auto;
+    background: #000;
+    margin: 0em;
+    color: #00FF00;
+    font: normal 16px/20px Courier, Courier New, monospace;
+}
+
+a {
+    color: #FFF;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #EEE;
+    text-decoration: none;
+}
+
+form {
+    cursor: auto;
+    /* text-align: center; */
+}
+
+td {
+    text-align: left;
+}
+
+th {
+    text-align: right;
+}
+
+hr {
+    height: 2px;
+    color: #00FF00;
+    background-color: #00FF00;
+    border: none;
+}
+
+.inner {
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.outer {
+    margin: 0 auto;
+    max-width: 95%;
+}
+
+#bonzi {
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+}
+
+#gdpr {
+    top: 0;
+    position: relative;
+    padding: 0.75em;
+    text-align: center;
+    width: 100%;
+    background-color: #BEBEBE;
+    color: #000000;
+}
+
+.win95button {
+    border: 0.25em solid;
+    border-color: #000000;
+    background-color: #BEBEBE;
+    padding: 0.75em;
+    width: 10em;
+}
+
+img {
+    vertical-align: middle;
+}

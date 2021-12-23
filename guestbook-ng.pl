@@ -12,6 +12,7 @@ use Data::Dumper; # Uncomment for debugging
 # Plugins
 plugin 'Config';
 plugin 'TagHelpers::Pagination';
+plugin AssetPack => {pipes => [qw{Css JavaScript Combine}]};
 
 # Helpers
 helper pg => sub {
@@ -77,5 +78,8 @@ app->message->max_posts(app->config->{'max_posts'})
     if app->config->{'max_posts'};
 
 app->pg->migrations->from_dir('migrations')->migrate(3);
+
+app->asset->store->paths(['assets']);
+app->asset->process('swagg.css', 'css/swagg.css');
 
 app->start();

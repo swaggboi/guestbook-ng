@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Guestbook-NG - <%= title %></title>
+  <%= asset 'swagg.css' %>
 </head>
 <body>
 <center>
