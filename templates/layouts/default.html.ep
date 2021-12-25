@@ -2,10 +2,11 @@
 <html>
 <head>
   <title>Guestbook-NG - <%= title %></title>
+  <meta name="viewport" content= "width=device-width, initial-scale=1.0">
   <%= asset 'swagg.css' %>
 </head>
 <body>
-<center>
+<div class="outer">
   <h1>Guestbook-NG</h1>
   <!-- Nav table -->
   <table>
@@ -15,11 +16,15 @@
       <td><%= link_to Sign => 'sign' %></td>
     </tr>
   </table>
-  <%= content %>
+</div>
+<div class="inner">
+<%= content %>
+</div>
+<div class="outer">
   <footer>
     <p><i>Maximize your dynamic innovation using battle-tested deep
-        learning models.</i></p>
+      learning models.</i></p>
   </footer>
-</center>
+</div>
 </body>
 </html>

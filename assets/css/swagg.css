@@ -18,7 +18,7 @@ a:hover {
 
 form {
     cursor: auto;
-    /* text-align: center; */
+    text-align: center;
 }
 
 td {
@@ -38,12 +38,12 @@ hr {
 
 .inner {
     margin: 0 auto;
-    max-width: 90%;
+    max-width: 50%;
 }
 
 .outer {
     margin: 0 auto;
-    max-width: 95%;
+    max-width: 60%;
 }
 
 #bonzi {
@@ -72,4 +72,10 @@ hr {
 
 img {
     vertical-align: middle;
+}
+
+.bordered, .bordered tr, .bordered th, .bordered td {
+    border-style: double;
+    border-collapse: collapse;
+    padding: 10px;
 }
