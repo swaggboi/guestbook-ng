@@ -44,3 +44,5 @@ Add the `-v` option for more verbose output
 ## TODOs
 
 1. Input validation
+1. Add homepage/URL field and filter URLs out of message body
+1. Flash error for CAPTCHA failures and what nots
