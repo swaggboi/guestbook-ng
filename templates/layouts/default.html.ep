@@ -7,24 +7,28 @@
 </head>
 <body>
 <div class="outer">
-  <h1>Guestbook-NG</h1>
-  <!-- Nav table -->
-  <table>
-    <tr>
-      <td><%= link_to View => 'index' %></td>
-      <td>&nbsp;</td>
-      <td><%= link_to Sign => 'sign' %></td>
-    </tr>
-  </table>
-  <hr>
+  <center>
+    <h1>Guestbook-NG</h1>
+    <!-- Nav table -->
+    <table>
+      <tr>
+        <td><%= link_to View => 'index' %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to Sign => 'sign' %></td>
+      </tr>
+    </table>
+    <hr>
+  </center>
 </div>
 <div class="inner">
 <%= content %>
 </div>
 <div class="outer">
   <footer>
-    <p><i>Maximize your dynamic innovation using battle-tested deep
-      learning models.</i></p>
+    <center>
+      <p><i>Maximize your dynamic innovation using battle-tested deep
+        learning models.</i></p>
+    </center>
   </footer>
 </div>
 </body>

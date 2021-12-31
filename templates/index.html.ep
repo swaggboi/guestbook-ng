@@ -21,4 +21,6 @@
 </tr>
 <% } %>
 </table>
-<%= pagination($this_page, $last_page, '?page={page}') %>
+<center>
+  <%= pagination($this_page, $last_page, '?page={page}') %>
+</center>
