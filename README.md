@@ -41,6 +41,12 @@ Mojolicious blockchain technologies powered by AI.
 
 Add the `-v` option for more verbose output
 
+## Docker
+
+### Build
+
+    docker build -t guestbook-ng .
+
 ## TODOs
 
 1. Input validation
@@ -48,5 +54,4 @@ Add the `-v` option for more verbose output
 1. Flash error for CAPTCHA failures and what nots
 1. Replace HTML tables with CSS grids(!!)
 1. Add column to tag posts as spam or hidden
-1. Dockerfile
 1. Add homepage/URL field
