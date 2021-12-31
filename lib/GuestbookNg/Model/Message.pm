@@ -22,7 +22,7 @@ sub get_posts($self, $this_page = undef) {
             SELECT to_char(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message
-              FROM messages
+              FROM guestbook
              ORDER BY message_date DESC
              LIMIT ? OFFSET ?;
            END_SQL
@@ -32,7 +32,7 @@ sub get_posts($self, $this_page = undef) {
             SELECT to_char(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message
-              FROM messages
+              FROM guestbook
              ORDER BY message_date DESC;
            END_SQL
     }
@@ -40,7 +40,7 @@ sub get_posts($self, $this_page = undef) {
 
 sub create_post($self, $name, $message) {
     $self->pg->db->query(<<~'END_SQL', $name, $message)
-        INSERT INTO messages (message_date, visitor_name, message)
+        INSERT INTO guestbook (message_date, visitor_name, message)
         VALUES (NOW(), ?, ?);
        END_SQL
 }
@@ -58,7 +58,7 @@ sub get_last_page($self) {
 }
 
 sub get_post_count($self) {
-    $self->pg->db->query('SELECT count(*) FROM messages;')->text()
+    $self->pg->db->query('SELECT count(*) FROM guestbook;')->text()
 }
 
 1;
