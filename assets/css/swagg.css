@@ -18,7 +18,7 @@ a:hover {
 
 form {
     cursor: auto;
-    text-align: center;
+    /* text-align: center; */
 }
 
 td {
@@ -63,20 +63,28 @@ hr {
 }
 
 .win95button {
-    border: 0.25em solid;
+    border: 0.25em outset;
     border-color: #000000;
     background-color: #BEBEBE;
     padding: 0.75em;
     width: 10em;
 }
 
+.win95button:active {
+    border: 0.25em inset;
+}
+
 img {
     vertical-align: middle;
 }
 
-.bordered, .bordered tr, .bordered th, .bordered td {
-    border-style: double;
-    border-collapse: collapse;
-    padding: 10px;
-    border-color: #00FF00;
+.field {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 1em;
+}
+
+.captcha {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
 }

@@ -2,29 +2,26 @@
 % title 'Sign';
 <h2>Sign the Guestbook</h2>
 <form method="post">
-  <table class="bordered">
-    <tr>
-      <th>Name</th>
-      <td><%= input_tag 'name' %></td>
-    </tr>
-    <tr>
-      <th>Message</th>
-      <td><%= text_area 'message', cols => 40, rows => 6 %></td>
-    </tr>
-    <tr>
-      <th>SwaggCAPTCHA™</th>
-      <td>
-        <%= radio_button answer => 0 %>
-        <%= label_for answer => 'I don\'t want to sign (wrong answer)' %><br>
-        <%= radio_button answer => 'false' %>
-        <%= label_for answer => 'I\'m ready to sign (choose this one)' %><br>
-        <%= radio_button answer => undef %>
-        <%= label_for answer => 'This is spam/I\'m a bot, do not sign' %>
-      </td>
-    </tr>
-    <tr>
-      <th style="border: none;">&nbsp;</th>
-      <td style="border: none;"><%= submit_button 'Send it' %></td>
-    </tr>
-  </table>
+  <div class="name field">
+    <%= label_for name => 'Name' %>
+    <%= input_tag 'name' %>
+  </div>
+  <div class="url field">
+    <%= label_for url => 'Homepage URL (doesn\'t work yet 😩😭)' %>
+    <%= input_tag 'url' %>
+  </div>
+  <div class="message field">
+    <%= label_for message => 'Message' %>
+    <%= text_area 'message', rows => 6 %>
+  </div>
+  <h3>SwaggCAPTCHA™</h3>
+  <div class="captcha field">
+    <%= radio_button answer => 0 %>
+    <%= label_for answer => 'I don\'t want to sign (wrong answer)' %>
+    <%= radio_button answer => 'false' %>
+    <%= label_for answer => 'I\'m ready to sign (choose this one)' %>
+    <%= radio_button answer => undef %>
+    <%= label_for answer => 'This is spam/I\'m a bot, do not sign' %>
+  </div>
+  <%= submit_button 'Sign it', class => 'win95button' %>
 </form>
