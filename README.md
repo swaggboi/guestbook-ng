@@ -48,3 +48,5 @@ Add the `-v` option for more verbose output
 1. Flash error for CAPTCHA failures and what nots
 1. Replace HTML tables with CSS grids(!!)
 1. Add column to tag posts as spam or hidden
+1. Dockerfile
+1. Add homepage/URL field
