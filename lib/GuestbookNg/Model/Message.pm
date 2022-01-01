@@ -38,11 +38,19 @@ sub get_posts($self, $this_page = undef) {
     }
 }
 
-sub create_post($self, $name, $message) {
-    $self->pg->db->query(<<~'END_SQL', $name, $message)
-        INSERT INTO messages (message_date, visitor_name, message)
-        VALUES (NOW(), ?, ?);
-       END_SQL
+sub create_post($self, $name, $message, $url = undef) {
+    if ($url) {
+        $self->pg->db->query(<<~'END_SQL', $name, $url, $message)
+            INSERT INTO messages (message_date, visitor_name, homepage_url, message)
+            VALUES (NOW(), ?, ?, ?);
+           END_SQL
+    }
+    else {
+        $self->pg->db->query(<<~'END_SQL', $name, $message)
+            INSERT INTO messages (message_date, visitor_name, message)
+            VALUES (NOW(), ?, ?);
+           END_SQL
+    }
 }
 
 sub max_posts($self, $value = undef) {

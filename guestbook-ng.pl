@@ -63,10 +63,11 @@ get '/' => sub ($c) {
 any [qw{GET POST}], '/sign' => sub ($c) {
     if ($c->req->method() eq 'POST' && $c->param('message')) {
         my $name    = $c->param('name') || 'Anonymous';
+        my $url     = $c->param('url');
         my $message = $c->param('message');
         my $answer  = $c->param('answer');
 
-        $c->message->create_post($name, $message) if $answer;
+        $c->message->create_post($name, $message, $url) if $answer;
         $c->redirect_to('index');
     }
     else {
@@ -93,7 +94,7 @@ app->secrets(app->config->{'secrets'}) || die $@;
 app->message->max_posts(app->config->{'max_posts'})
     if app->config->{'max_posts'};
 
-app->pg->migrations->from_dir('migrations')->migrate(3);
+app->pg->migrations->from_dir('migrations')->migrate(4);
 
 app->asset->store->paths(['assets']);
 app->asset->process('swagg.css', 'css/swagg.css');

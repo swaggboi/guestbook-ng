@@ -10,6 +10,7 @@ my $script = curfile->dirname->sibling('guestbook-ng.pl');
 my $t      = Test::Mojo->new($script);
 my %form   = (
     name    => 'swagg boi',
+    url     => 'http://localhost',
     message => 'Ayy... lmao',
     answer  => 'false'
     );
