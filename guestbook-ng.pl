@@ -5,9 +5,12 @@
 
 use Mojolicious::Lite -signatures;
 use Mojo::Pg;
+use List::Util qw{shuffle};
+use Data::Dumper; # Uncomment for debugging
+
+# Load the model
 use lib 'lib';
 use GuestbookNg::Model::Message;
-use Data::Dumper; # Uncomment for debugging
 
 # Plugins
 plugin 'Config';
@@ -67,7 +70,20 @@ any [qw{GET POST}], '/sign' => sub ($c) {
         $c->redirect_to('index');
     }
     else {
-        $c->render()
+        my @answers             = shuffle(0, 'false', undef);
+        my $right_answer_label  = 'I\'m ready to sign (choose this one)';
+        my @wrong_answer_labels = shuffle(
+            'I don\'t want to sign (wrong answer)',
+            'This is spam/I\'m a bot, do not sign'
+            );
+
+        $c->stash(
+            answers             => \@answers,
+            right_answer_label  => $right_answer_label,
+            wrong_answer_labels => \@wrong_answer_labels
+            );
+
+        $c->render();
     }
 };
 

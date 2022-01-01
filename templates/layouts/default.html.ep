@@ -21,7 +21,7 @@
   </center>
 </div>
 <div class="inner">
-<%= content %>
+<%= content =%>
 </div>
 <div class="outer">
   <footer>

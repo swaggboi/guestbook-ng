@@ -16,12 +16,11 @@
   </div>
   <h3>SwaggCAPTCHA™</h3>
   <div class="captcha field">
-    <%= radio_button answer => 0 %>
-    <%= label_for answer => 'I don\'t want to sign (wrong answer)' %>
-    <%= radio_button answer => 'false' %>
-    <%= label_for answer => 'I\'m ready to sign (choose this one)' %>
-    <%= radio_button answer => undef %>
-    <%= label_for answer => 'This is spam/I\'m a bot, do not sign' %>
+    <% for my $answer (@$answers) { =%>
+      <%= radio_button answer => $answer %>
+      <%= label_for answer =>
+          $answer ? $right_answer_label : pop @$wrong_answer_labels %>
+    <% } =%>
   </div>
   <%= submit_button 'Sign it', class => 'win95button' %>
 </form>
