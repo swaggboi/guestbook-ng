@@ -61,8 +61,8 @@ get '/' => sub ($c) {
 } => 'index';
 
 any [qw{GET POST}], '/sign' => sub ($c) {
-    if ($c->param('name') && $c->param('message')) {
-        my $name    = $c->param('name');
+    if ($c->req->method() eq 'POST' && $c->param('message')) {
+        my $name    = $c->param('name') || 'Anonymous';
         my $message = $c->param('message');
         my $answer  = $c->param('answer');
 
