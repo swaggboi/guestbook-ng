@@ -44,7 +44,7 @@ under sub ($c) {
     # https://paramdeo.com/blog/opting-your-website-out-of-googles-floc-network
     $c->res->headers->header('Permissions-Policy', 'interest-cohort=()');
 
-    $c->session();
+    $c->session(expiration => 604800);
 
     1;
 };
