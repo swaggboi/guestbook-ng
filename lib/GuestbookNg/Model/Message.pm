@@ -18,20 +18,23 @@ sub get_posts($self, $this_page = undef) {
         my $row_count = $self->{'max_posts'};
         my $offset    = ($this_page - 1) * $row_count;
 
-        $self->pg->db->query(<<~'END_SQL', $row_count, $offset)->arrays();
+        return $self->pg->db
+            ->query(<<~'END_SQL', $row_count, $offset)->arrays();
             SELECT to_char(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
-                   message
+                   message,
+                   homepage_url
               FROM messages
              ORDER BY message_date DESC
              LIMIT ? OFFSET ?;
            END_SQL
     }
     else {
-        $self->pg->db->query(<<~'END_SQL')->arrays()
+        return $self->pg->db->query(<<~'END_SQL')->arrays()
             SELECT to_char(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
-                   message
+                   message,
+                   homepage_url
               FROM messages
              ORDER BY message_date DESC;
            END_SQL
@@ -40,8 +43,13 @@ sub get_posts($self, $this_page = undef) {
 
 sub create_post($self, $name, $message, $url = undef) {
     if ($url) {
-        $self->pg->db->query(<<~'END_SQL', $name, $url, $message)
-            INSERT INTO messages (message_date, visitor_name, homepage_url, message)
+        $self->pg->db->query(<<~'END_SQL', $name, $message, $url)
+            INSERT INTO messages (
+                                     message_date,
+                                     visitor_name,
+                                     message,
+                                     homepage_url
+                                 )
             VALUES (NOW(), ?, ?, ?);
            END_SQL
     }
@@ -51,22 +59,24 @@ sub create_post($self, $name, $message, $url = undef) {
             VALUES (NOW(), ?, ?);
            END_SQL
     }
+
+    return;
 }
 
 sub max_posts($self, $value = undef) {
-    $self->{'max_posts'} = $value // $self->{'max_posts'}
+    return $self->{'max_posts'} = $value // $self->{'max_posts'}
 }
 
 sub get_last_page($self) {
     my $post_count = $self->get_post_count();
-    my $last_page  = sprintf('%d', $post_count / $self->{'max_posts'});
+    my $last_page  = int($post_count / $self->{'max_posts'});
 
     # Add a page if we have "remainder" posts
     return $post_count % $self->{'max_posts'} ? ++$last_page : $last_page;
 }
 
 sub get_post_count($self) {
-    $self->pg->db->query('SELECT count(*) FROM messages;')->text()
+    return $self->pg->db->query('SELECT count(*) FROM messages;')->text()
 }
 
 1;
