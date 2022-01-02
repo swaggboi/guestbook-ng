@@ -46,20 +46,14 @@ sub get_posts($self, $this_page = undef) {
 sub create_post($self, $name, $message, $url = undef, $spam = 1) {
     if ($url) {
         $self->pg->db->query(<<~'END_SQL', $name, $message, $url, $spam)
-            INSERT INTO messages (
-                                     message_date,
-                                     visitor_name,
-                                     message,
-                                     homepage_url,
-                                     is_spam
-                                 )
-            VALUES (NOW(), ?, ?, ?, ?);
+            INSERT INTO messages (visitor_name, message, homepage_url, is_spam)
+            VALUES (?, ?, ?, ?);
            END_SQL
     }
     else {
         $self->pg->db->query(<<~'END_SQL', $name, $message, $spam)
-            INSERT INTO messages (message_date, visitor_name, message, is_spam)
-            VALUES (NOW(), ?, ?, ?);
+            INSERT INTO messages (visitor_name, message, is_spam)
+            VALUES (?, ?, ?);
            END_SQL
     }
 

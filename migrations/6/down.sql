@@ -1,0 +1,3 @@
+ALTER TABLE messages
+ALTER COLUMN message_date
+ DROP DEFAULT;

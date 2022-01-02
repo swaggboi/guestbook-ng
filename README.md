@@ -50,4 +50,3 @@ Add the `-v` option for more verbose output
 ## TODOs
 
 1. Input validation
-1. Set date in the DB rather than the model
