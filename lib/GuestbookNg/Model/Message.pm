@@ -20,43 +20,46 @@ sub get_posts($self, $this_page = undef) {
 
         return $self->pg->db
             ->query(<<~'END_SQL', $row_count, $offset)->arrays();
-            SELECT to_char(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
+            SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
                    homepage_url
               FROM messages
+             WHERE NOT is_spam
              ORDER BY message_date DESC
              LIMIT ? OFFSET ?;
            END_SQL
     }
     else {
         return $self->pg->db->query(<<~'END_SQL')->arrays()
-            SELECT to_char(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
+            SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
                    homepage_url
               FROM messages
+             WHERE NOT is_spam
              ORDER BY message_date DESC;
            END_SQL
     }
 }
 
-sub create_post($self, $name, $message, $url = undef) {
+sub create_post($self, $name, $message, $url = undef, $spam = 1) {
     if ($url) {
-        $self->pg->db->query(<<~'END_SQL', $name, $message, $url)
+        $self->pg->db->query(<<~'END_SQL', $name, $message, $url, $spam)
             INSERT INTO messages (
                                      message_date,
                                      visitor_name,
                                      message,
-                                     homepage_url
+                                     homepage_url,
+                                     is_spam
                                  )
-            VALUES (NOW(), ?, ?, ?);
+            VALUES (NOW(), ?, ?, ?, ?);
            END_SQL
     }
     else {
-        $self->pg->db->query(<<~'END_SQL', $name, $message)
-            INSERT INTO messages (message_date, visitor_name, message)
-            VALUES (NOW(), ?, ?);
+        $self->pg->db->query(<<~'END_SQL', $name, $message, $spam)
+            INSERT INTO messages (message_date, visitor_name, message, is_spam)
+            VALUES (NOW(), ?, ?, ?);
            END_SQL
     }
 
@@ -76,7 +79,11 @@ sub get_last_page($self) {
 }
 
 sub get_post_count($self) {
-    return $self->pg->db->query('SELECT count(*) FROM messages;')->text()
+    return $self->pg->db->query(<<~'END_SQL')->text()
+               SELECT COUNT(*)
+                 FROM messages
+                WHERE NOT is_spam;
+              END_SQL
 }
 
 1;

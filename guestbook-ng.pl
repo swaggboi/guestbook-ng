@@ -67,14 +67,14 @@ any [qw{GET POST}], '/sign' => sub ($c) {
         my $name    = $c->param('name') || 'Anonymous';
         my $url     = $c->param('url');
         my $message = $c->param('message');
-        my $answer  = $c->param('answer');
+        my $spam    = $c->param('answer') ? 0 : 1;
 
-        if ($message && $answer) {
-            $c->message->create_post($name, $message, $url);
+        if ($message) {
+            $c->message->create_post($name, $message, $url, $spam);
             $c->redirect_to('index');
         }
         else {
-            $c->flash(error => 'Uh-oh!! Please try again.');
+            $c->flash(error => 'Message cannot be blank');
             $c->redirect_to('sign');
         }
     }
@@ -106,7 +106,7 @@ app->secrets(app->config->{'secrets'}) || die $@;
 app->message->max_posts(app->config->{'max_posts'})
     if app->config->{'max_posts'};
 
-app->pg->migrations->from_dir('migrations')->migrate(4);
+app->pg->migrations->from_dir('migrations')->migrate(5);
 
 app->asset->store->paths(['assets']);
 app->asset->process('swagg.css', 'css/swagg.css');
