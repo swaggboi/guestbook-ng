@@ -16,7 +16,8 @@
   <div class="error">
     <h2>Stop! You've violated the law:</h2>
     <p><%= flash 'error' %></p>
-    <p>This incident has been reported to the cyber-police.</p>
+    <p>Please report to the
+        <%= link_to 'cyber police', 'mailto:swaggboi@slackware.uk' %>!</p>
   </div>
   <% } =%>
   <hr>

@@ -68,14 +68,15 @@ any [qw{GET POST}], '/sign' => sub ($c) {
         my $name    = $c->param('name') || 'Anonymous';
         my $url     = $c->param('url');
         my $message = $c->param('message');
-        my $spam    = $c->param('answer') ? 0 : 1;
-
-        # No URLs in message body since they have their own field
-        $spam =
-            $message =~ /$RE{URI}{HTTP}{-scheme => qr<https?>}/ ? 1 : 0;
+        my $spam    =
+            !$c->param('answer')                                ? 1 :
+            $message =~ /$RE{URI}{HTTP}{-scheme => qr<https?>}/ ? 1 :
+            0;
 
         if ($message) {
             $c->message->create_post($name, $message, $url, $spam);
+
+            $c->flash(error => 'This message was flagged as spam') if $spam;
             $c->redirect_to('index');
         }
         else {
