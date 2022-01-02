@@ -6,6 +6,7 @@
 use Mojolicious::Lite -signatures;
 use Mojo::Pg;
 use List::Util qw{shuffle};
+use Regexp::Common qw{URI};
 use Data::Dumper; # Uncomment for debugging
 
 # Load the model
@@ -68,6 +69,10 @@ any [qw{GET POST}], '/sign' => sub ($c) {
         my $url     = $c->param('url');
         my $message = $c->param('message');
         my $spam    = $c->param('answer') ? 0 : 1;
+
+        # No URLs in message body since they have their own field
+        $spam =
+            $message =~ /$RE{URI}{HTTP}{-scheme => qr<https?>}/ ? 1 : 0;
 
         if ($message) {
             $c->message->create_post($name, $message, $url, $spam);
