@@ -7,7 +7,8 @@ body {
     background: #000;
     margin: 0em;
     color: #00FF00;
-    font-family: fantasy;
+    font-family: monospace;
+    font-size: 1.25em;
 }
 
 a {
@@ -93,13 +94,14 @@ img {
 }
 
 article {
+    border-color: #00FF00;
     border-style: ridge;
     padding: 0em 1em;
 }
 
 article .message.field {
     font-family: cursive;
-    font-size: 1.35em;
+    /* font-size: 1.35em; */
     margin-bottom: 0em;
 }
 
@@ -128,7 +130,7 @@ h1#top {
     text-align: center;
 }
 
-@media screen and (max-width: 1365px) {
+@media screen and (max-width: 1023px) {
     .inner {
         max-width: 90%;
     }
