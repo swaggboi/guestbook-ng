@@ -71,6 +71,10 @@ any [qw{GET POST}], '/sign' => sub ($c) {
         $c->redirect_to('index');
     }
     else {
+        # Try to randomize things for the CAPTCHA challenge. The
+        # string 'false' actually evaluates to true so this is an
+        # attempt to confuse a (hypothetical) bot that would try to
+        # select what it thinks is the right answer
         my @answers             = shuffle(0, 'false', undef);
         my $right_answer_label  = 'I\'m ready to sign (choose this one)';
         my @wrong_answer_labels = shuffle(

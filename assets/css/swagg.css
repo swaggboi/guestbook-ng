@@ -7,22 +7,20 @@ body {
     background: #000;
     margin: 0em;
     color: #00FF00;
-    font: normal 16px/20px Courier, Courier New, monospace;
+    font-family: fantasy;
 }
 
 a {
-    color: #FFF;
-    text-decoration: underline;
-}
-
-a:hover {
-    color: #EEE;
+    color: cyan;
     text-decoration: none;
 }
 
-form {
-    cursor: auto;
-    /* text-align: center; */
+a:hover {
+    text-decoration: underline;
+}
+
+a:active, a:visited {
+    color: violet;
 }
 
 td {
@@ -88,9 +86,46 @@ img {
     margin-bottom: 1em;
 }
 
+.articles {
+    displace: flex;
+    flex-flow: column;
+    margin-bottom: 1em;
+}
+
+article {
+    border-style: ridge;
+    padding: 0em 1em;
+}
+
+article .message.field {
+    font-family: cursive;
+    font-size: 1.35em;
+    margin-bottom: 0em;
+}
+
+article h3 {
+    margin-bottom: 0em;
+}
+
 .captcha {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 10fr;
+}
+
+footer {
+    font-style: italic;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1em;
+}
+
+h1#top {
+    text-align: center;
 }
 
 @media screen and (max-width: 1365px) {

@@ -7,7 +7,7 @@
     <%= input_tag 'name' %>
   </div>
   <div class="url field">
-    <%= label_for url => 'Homepage URL (doesn\'t work yet 😩😭)' %>
+    <%= label_for url => 'Homepage URL' %>
     <%= input_tag 'url' %>
   </div>
   <div class="message field">
