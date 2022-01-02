@@ -43,6 +43,8 @@ under sub ($c) {
     # https://paramdeo.com/blog/opting-your-website-out-of-googles-floc-network
     $c->res->headers->header('Permissions-Policy', 'interest-cohort=()');
 
+    $c->session();
+
     1;
 };
 
@@ -61,14 +63,20 @@ get '/' => sub ($c) {
 } => 'index';
 
 any [qw{GET POST}], '/sign' => sub ($c) {
-    if ($c->req->method() eq 'POST' && $c->param('message')) {
+    if ($c->req->method() eq 'POST') {
         my $name    = $c->param('name') || 'Anonymous';
         my $url     = $c->param('url');
         my $message = $c->param('message');
         my $answer  = $c->param('answer');
 
-        $c->message->create_post($name, $message, $url) if $answer;
-        $c->redirect_to('index');
+        if ($message && $answer) {
+            $c->message->create_post($name, $message, $url);
+            $c->redirect_to('index');
+        }
+        else {
+            $c->flash(error => 'Uh-oh!! Please try again.');
+            $c->redirect_to('sign');
+        }
     }
     else {
         # Try to randomize things for the CAPTCHA challenge. The

@@ -8,11 +8,17 @@
 <body>
 <div class="outer">
   <h1 id="top">Guestbook-NG</h1>
-  <!-- Nav table -->
   <nav>
     <%= link_to View => 'index' %>
     <%= link_to Sign => 'sign' %>
   </nav>
+  <% if (flash 'error') { =%>
+  <div class="error">
+    <h2>Stop! You've violated the law:</h2>
+    <p><%= flash 'error' %></p>
+    <p>This incident has been reported to the cyber-police.</p>
+  </div>
+  <% } =%>
   <hr>
 </div>
 <div class="inner">

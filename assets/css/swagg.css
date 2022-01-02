@@ -101,7 +101,6 @@ article {
 
 article .message.field {
     font-family: cursive;
-    /* font-size: 1.35em; */
     margin-bottom: 0em;
 }
 
@@ -124,18 +123,28 @@ nav {
     flex-flow: row wrap;
     justify-content: center;
     gap: 1em;
+    margin-bottom: 1em;
 }
 
 h1#top {
     text-align: center;
 }
 
+.error {
+    border-style: solid;
+    border-color: red;
+    color: red;
+    padding: 1em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
 @media screen and (max-width: 1023px) {
     .inner {
-        max-width: 90%;
+        max-width: 95%;
     }
 
     .outer {
-        max-width: 95%;
+        max-width: 99%;
     }
 }
