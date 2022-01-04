@@ -88,15 +88,15 @@ img {
 }
 
 .articles {
-    displace: flex;
+    display: flex;
     flex-flow: column;
-    margin-bottom: 1em;
 }
 
 article {
     border-color: #00FF00;
     border-style: ridge;
     padding: 0em 1em;
+    margin-bottom: 1em;
 }
 
 article .message.field {

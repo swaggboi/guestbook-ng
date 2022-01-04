@@ -1,24 +1,26 @@
 % layout 'default';
 % title 'View';
 <h2>Messages from the World Wide Web</h2>
-<% for my $row (@$view_posts) { =%>
 <div class="articles">
+  <% for my $post (@$view_posts) { =%>
   <article>
-    <h3><%= @$row[0] %></h3>
+    <h3><%= @$post[0] %></h3>
     <section class="message field">
-      <blockquote><p><%= @$row[2] %></p></blockquote>
+      <blockquote><p><%= @$post[2] %></p></blockquote>
     </section>
     <section class="name field">
       <figcaption>
-        - <%= @$row[1] %>
-        <% if (@$row[3]) { =%>
-          (<%= link_to Homepage => @$row[3] %>)
+        - <%= @$post[1] %>
+        <% if (@$post[3]) { =%>
+        (<%= link_to Homepage => @$post[3] %>)
         <% } =%>
       </figcaption>
     </section>
   </article>
+  <% } =%>
 </div>
-<% } =%>
+<% unless ($last_page == 1) { =%>
 <nav>
-  <%= pagination($this_page, $last_page, '?page={page}') %>
+  <%= pagination $this_page, $last_page, '?page={page}' %>
 </nav>
+<% } =%>
