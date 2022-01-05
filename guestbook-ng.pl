@@ -114,7 +114,6 @@ app->message->max_posts(app->config->{'max_posts'})
 
 app->pg->migrations->from_dir('migrations')->migrate(7);
 
-app->asset->store->paths(['assets']);
 app->asset->process('swagg.css', 'css/swagg.css');
 
 app->start();
