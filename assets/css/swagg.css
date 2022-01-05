@@ -102,6 +102,7 @@ article {
 article .message.field {
     font-family: cursive;
     margin-bottom: 0em;
+    white-space: pre;
 }
 
 article h3 {
