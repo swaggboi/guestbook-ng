@@ -19,7 +19,7 @@
   </article>
   <% } =%>
 </div>
-<% unless ($last_page == 1) { =%>
+<% if ($last_page && $last_page != 1) { =%>
 <nav>
   <%= pagination $this_page, $last_page, '?page={page}' %>
 </nav>
