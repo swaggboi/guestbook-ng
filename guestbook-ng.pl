@@ -112,7 +112,7 @@ app->secrets(app->config->{'secrets'}) || die $@;
 app->message->max_posts(app->config->{'max_posts'})
     if app->config->{'max_posts'};
 
-app->pg->migrations->from_dir('migrations')->migrate(6);
+app->pg->migrations->from_dir('migrations')->migrate(7);
 
 app->asset->store->paths(['assets']);
 app->asset->process('swagg.css', 'css/swagg.css');
