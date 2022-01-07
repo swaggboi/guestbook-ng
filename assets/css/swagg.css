@@ -111,7 +111,7 @@ article h3 {
 
 .captcha {
     display: grid;
-    grid-template-columns: 1fr 10fr;
+    grid-template-columns: 3ch auto;
 }
 
 footer {
