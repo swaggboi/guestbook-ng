@@ -4,15 +4,20 @@
 <form method="post">
   <div class="name field">
     <%= label_for name => 'Name' %>
-    <%= input_tag 'name' %>
+    <%= input_tag name =>'Anonymous', maxlength => 63, minlength => 1 %>
   </div>
   <div class="url field">
     <%= label_for url => 'Homepage URL' %>
-    <%= input_tag 'url' %>
+    <%= input_tag 'url', maxlength => 255 %>
   </div>
   <div class="message field">
     <%= label_for message => 'Message' %>
-    <%= text_area 'message', rows => 6 %>
+    <textarea
+        name="message"
+        maxlength="2000"
+        minlength="2"
+        required="true"
+        rows="6"></textarea>
   </div>
   <h3>SwaggCAPTCHA™</h3>
   <div class="captcha field">
