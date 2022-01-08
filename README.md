@@ -50,3 +50,4 @@ Add the `-v` option for more verbose output
 ## TODOs
 
 1. Input validation
+1. /spam route would be interesting
