@@ -51,3 +51,4 @@ Add the `-v` option for more verbose output
 
 1. Input validation
 1. /spam route would be interesting
+1. Include the total number of visitors or messages
