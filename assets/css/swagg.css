@@ -132,12 +132,18 @@ h1#top {
 }
 
 .error {
-    border-style: solid;
+    border-style: dashed;
     border-color: red;
     color: red;
     padding: 1em;
     text-align: center;
     margin-bottom: 1em;
+}
+
+.field-with-error {
+    border-style: dotted;
+    border-color: red;
+    padding-left: 1em;
 }
 
 @media screen and (max-width: 1023px) {

@@ -46,6 +46,9 @@ under sub ($c) {
 
     $c->session(expiration => 604800);
 
+    $c->stash(status => 403)
+        if $c->flash('error') eq 'This message was flagged as spam';
+
     1;
 };
 
@@ -64,7 +67,9 @@ get '/' => sub ($c) {
 } => 'index';
 
 any [qw{GET POST}], '/sign' => sub ($c) {
-    if ($c->req->method() eq 'POST') {
+    my $v = $c->validation();
+
+    if ($c->req->method eq 'POST' && $v->has_data) {
         my $name    = $c->param('name') || 'Anonymous';
         my $url     = $c->param('url');
         my $message = $c->param('message');
@@ -73,37 +78,37 @@ any [qw{GET POST}], '/sign' => sub ($c) {
             $message =~ /$RE{URI}{HTTP}{-scheme => qr<https?>}/ ? 1 :
             0;
 
-        if ($message) {
+        $v->required('name'   )->size(1,   63);
+        $v->required('message')->size(2, 2000);
+        $v->optional('url', 'not_empty')->size(1, 255)
+            ->like(qr/$RE{URI}{HTTP}{-scheme => qr<https?>}/);
+
+        unless ($v->has_error) {
             $c->message->create_post($name, $message, $url, $spam);
 
             $c->flash(error => 'This message was flagged as spam') if $spam;
             $c->redirect_to('index');
         }
-        else {
-            $c->flash(error => 'Message cannot be blank');
-            $c->redirect_to('sign');
-        }
     }
-    else {
-        # Try to randomize things for the CAPTCHA challenge. The
-        # string 'false' actually evaluates to true so this is an
-        # attempt to confuse a (hypothetical) bot that would try to
-        # select what it thinks is the right answer
-        my @answers             = shuffle(0, 'false', undef);
-        my $right_answer_label  = 'I\'m ready to sign (choose this one)';
-        my @wrong_answer_labels = shuffle(
-            'I don\'t want to sign (wrong answer)',
-            'This is spam/I\'m a bot, do not sign'
-            );
 
-        $c->stash(
-            answers             => \@answers,
-            right_answer_label  => $right_answer_label,
-            wrong_answer_labels => \@wrong_answer_labels
-            );
+    # Try to randomize things for the CAPTCHA challenge. The
+    # string 'false' actually evaluates to true so this is an
+    # attempt to confuse a (hypothetical) bot that would try to
+    # select what it thinks is the right answer
+    my @answers             = shuffle(0, 'false', undef);
+    my $right_answer_label  = 'I\'m ready to sign (choose this one)';
+    my @wrong_answer_labels = shuffle(
+        'I don\'t want to sign (wrong answer)',
+        'This is spam/I\'m a bot, do not sign'
+        );
 
-        $c->render();
-    }
+    $c->stash(
+        answers             => \@answers,
+        right_answer_label  => $right_answer_label,
+        wrong_answer_labels => \@wrong_answer_labels
+        );
+
+    $c->render();
 };
 
 # Send it

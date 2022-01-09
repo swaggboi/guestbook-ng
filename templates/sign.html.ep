@@ -4,27 +4,36 @@
 <form method="post">
   <div class="name field">
     <%= label_for name => 'Name' %>
-    <%= input_tag name =>'Anonymous', maxlength => 63, minlength => 1 %>
+    <%= text_field name =>'Anonymous', maxlength => 63, minlength => 1 %>
   </div>
   <div class="url field">
     <%= label_for url => 'Homepage URL' %>
-    <%= input_tag 'url', maxlength => 255 %>
+    <%= text_field 'url', maxlength => 255 %>
+    <% if (my $error = validation->error('url')) { =%>
+      <p class="field-with-error">URL does not appear to be
+        <%= link_to 'RFC 2616',
+          'https://datatracker.ietf.org/doc/html/rfc2616/#section-3.2.2' %>
+        compliant.</p>
+    <% } =%>
   </div>
   <div class="message field">
-    <%= label_for message => 'Message' %>
-    <textarea
-        name="message"
-        maxlength="2000"
-        minlength="2"
-        required="true"
-        rows="6"></textarea>
+      <%= label_for message => 'Message' %>
+      <%= text_area 'message',
+        maxlength => 2000,
+        minlength => 2,
+        required  => 'true',
+        rows      => 6 %>
+    <% if (my $error = validation->error('message')) { =%>
+      <p class="field-with-error">Message must be less than 2,000
+          characters and cannot be blank.</p>
+    <% } =%>
   </div>
   <h3>SwaggCAPTCHA™</h3>
   <div class="captcha field">
     <% for my $answer (@$answers) { =%>
-      <%= radio_button answer => $answer %>
-      <%= label_for answer =>
-          $answer ? $right_answer_label : pop @$wrong_answer_labels %>
+    <%= radio_button answer => $answer %>
+    <%= label_for answer =>
+      $answer ? $right_answer_label : pop @$wrong_answer_labels %>
     <% } =%>
   </div>
   <%= submit_button 'Sign it', class => 'win95button' %>
