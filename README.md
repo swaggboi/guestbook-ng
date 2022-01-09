@@ -49,6 +49,5 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. More tests
 1. /spam route would be interesting
 1. Include the total number of visitors or messages

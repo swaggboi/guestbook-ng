@@ -46,8 +46,7 @@ under sub ($c) {
 
     $c->session(expiration => 604800);
 
-    $c->stash(status => 403)
-        if $c->flash('error') eq 'This message was flagged as spam';
+    $c->stash(status => 403) if $c->flash('error');
 
     1;
 };
