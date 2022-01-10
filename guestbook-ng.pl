@@ -7,7 +7,7 @@ use Mojolicious::Lite -signatures;
 use Mojo::Pg;
 use List::Util qw{shuffle};
 use Regexp::Common qw{URI};
-use Data::Dumper; # Uncomment for debugging
+#use Data::Dumper; # Uncomment for debugging
 
 # Load the model
 use lib 'lib';

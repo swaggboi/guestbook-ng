@@ -25,4 +25,4 @@ ENV MOJO_REVERSE_PROXY=1
 EXPOSE 3000
 
 # Send it
-CMD ["perl", "guestbook-ng.pl", "prefork", "-m", "development"]
+CMD ["perl", "guestbook-ng.pl", "prefork", "-m", "production"]
