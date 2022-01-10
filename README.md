@@ -8,28 +8,24 @@ Mojolicious blockchain technologies powered by AI.
 
     $ cat guestbook-ng.conf
     {
-        secrets => ['a_secret_here'],
+        secrets => ['secret_goes_here'],
         'TagHelpers-Pagination' => {
-            separator => ' ',
-            current   => '<strong>{current}</strong>'
+            separator => '',
+            current   => '<strong><u>{current}</u></strong>',
+            next      => 'Next',
+            prev      => 'Prev',
+            ellipsis  => '..'
         },
         dev_env => {
-            pg_user => 'guestbooker',
-            pg_pw   => 'a_password_here',
-            pg_db   => 'guestbook',
-            pg_host => 'localhost'
+            pg_string => 'postgresql://user:PASSWORD@example.com/db'
         },
         prod_env => {
-            pg_user => 'guestbooker',
-            pg_pw   => 'prod_password_here',
-            pg_db   => 'guestbook',
-            pg_host => 'prod.db.com'
-    
+            pg_string => 'postgresql://user:PASSWORD@example.com/db'
         },
         max_posts => 5
     }
 
-`secrets` and the DB credentials are mandatory
+`secrets` and the Postgres connection string are mandatory
 
 ## Testing
 
@@ -58,7 +54,5 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. Make the Postgres connection string more configurable (need to use
-   UNIX sockets in Prod...)
 1. /spam route would be interesting
 1. Include the total number of visitors or messages
