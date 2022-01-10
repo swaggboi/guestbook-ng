@@ -49,11 +49,12 @@ Add the `-v` option for more verbose output
 
 ### Tag
 
-    docker tag guestbook-ng us-east4-docker.pkg.dev/www-swagg/guestbook-ng
+    docker tag guestbook-ng \
+        us-east4-docker.pkg.dev/www-swagg/guestbook-ng/guestbook-ng
 
 ### Push
 
-    docker push us-east4-docker.pkg.dev/www-swagg/guestbook-ng
+    docker push us-east4-docker.pkg.dev/www-swagg/guestbook-ng/guestbook-ng
 
 ## TODOs
 
