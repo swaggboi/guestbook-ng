@@ -47,6 +47,14 @@ Add the `-v` option for more verbose output
 
     docker build -t guestbook-ng .
 
+### Tag
+
+    docker tag guestbook-ng us-east4-docker.pkg.dev/www-swagg/guestbook-ng
+
+### Push
+
+    docker push us-east4-docker.pkg.dev/www-swagg/guestbook-ng
+
 ## TODOs
 
 1. Make the Postgres connection string more configurable (need to use
