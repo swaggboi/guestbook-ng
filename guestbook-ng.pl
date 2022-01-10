@@ -86,7 +86,8 @@ any [qw{GET POST}], '/sign' => sub ($c) {
             $c->message->create_post($name, $message, $url, $spam);
 
             $c->flash(error => 'This message was flagged as spam') if $spam;
-            $c->redirect_to('index');
+
+            return $c->redirect_to('index');
         }
     }
 
