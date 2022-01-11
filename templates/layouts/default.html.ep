@@ -11,7 +11,7 @@
   <nav>
     <%= link_to View => 'index' %>
     <%= link_to Sign => 'sign' %>
-    <%= link_to 'SwaggNet Home', 'https://www.swagg.net' %>
+    <%= link_to Home => 'https://www.swagg.net' %>
   </nav>
   <% if (flash 'error') { =%>
   <div class="error">
