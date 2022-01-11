@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Guestbook-NG - <%= title %></title>
-  <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+  <title>Swagg::Net::Guestbook - <%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= asset 'swagg.css' %>
 </head>
 <body>
 <div class="outer">
-  <h1 id="top">Guestbook-NG</h1>
+  <h1 id="top">Swagg::Net::Guestbook</h1>
   <nav>
     <%= link_to View => 'index' %>
     <%= link_to Sign => 'sign' %>
+    <%= link_to 'SwaggNet Home', 'https://www.swagg.net' %>
   </nav>
   <% if (flash 'error') { =%>
   <div class="error">
     <h2>Stop! You've violated the law:</h2>
     <p><%= flash 'error' %></p>
     <p>Please report to the
-        <%= link_to 'cyber police', 'mailto:swaggboi@slackware.uk' %>!</p>
+      <%= link_to 'cyber police', 'mailto:swaggboi@slackware.uk' %>!</p>
   </div>
   <% } =%>
   <hr>
