@@ -28,8 +28,7 @@
 </div>
 <div class="outer">
   <footer>
-    <p>Maximize your dynamic innovation using battle-tested deep
-      learning models.</p>
+    <p><%= $post_count %> visitors have signed the guestbook to date.</p>
   </footer>
 </div>
 </body>
