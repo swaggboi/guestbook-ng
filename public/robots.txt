@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /asset/
 Disallow: /misc/
+Disallow: /spam
+Disallow: /spam/
