@@ -58,6 +58,20 @@ get '/' => sub ($c) {
     $c->render();
 } => 'index';
 
+get '/spam' => sub ($c) {
+    my $this_page  = $c->param('page') || 1;
+    my $last_page  = $c->message->get_last_page('spam');
+    my $view_posts = $c->message->get_spam($this_page);
+
+    $c->stash(
+        view_posts => $view_posts,
+        this_page  => $this_page,
+        last_page  => $last_page
+        );
+
+    $c->render();
+} => 'index';
+
 any [qw{GET POST}], '/sign' => sub ($c) {
     my $v = $c->validation();
 

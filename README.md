@@ -54,5 +54,4 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. /spam route would be interesting
 1. Visitor counter

@@ -19,6 +19,8 @@ $t->ua->max_redirects(1);
 
 $t->get_ok('/')->status_is(200)
     ->text_is(h2 => 'Messages from the World Wide Web');
+$t->get_ok('/spam')->status_is(200)
+    ->text_is(h2 => 'Messages from the World Wide Web');
 $t->get_ok('/sign')->status_is(200)->text_is(h2 => 'Sign the Guestbook');
 $t->post_ok('/sign', form => \%form)->status_is(200);
 
