@@ -71,6 +71,7 @@ hr {
     background-color: #BEBEBE;
     padding: 0.5em;
     width: 10em;
+    border-radius: 0%;
 }
 
 .win95button:active {
