@@ -16,6 +16,7 @@
         <% } =%>
       </figcaption>
     </section>
+    <span hidden>Message ID: <%= @$post[4] %></span>
   </article>
   <% } =%>
 </div>

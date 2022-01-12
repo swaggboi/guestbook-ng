@@ -23,7 +23,8 @@ sub get_posts($self, $this_page = undef) {
             SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
-                   homepage_url
+                   homepage_url,
+                   message_id
               FROM messages
              WHERE NOT is_spam
              ORDER BY message_date DESC
@@ -35,7 +36,8 @@ sub get_posts($self, $this_page = undef) {
             SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
-                   homepage_url
+                   homepage_url,
+                   message_id
               FROM messages
              WHERE NOT is_spam
              ORDER BY message_date DESC;
