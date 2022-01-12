@@ -39,6 +39,8 @@ under sub ($c) {
 
     $c->stash(status => 403) if $c->flash('error');
 
+    $c->stash(post_count => format_number $c->message->get_post_count);
+
     1;
 };
 
@@ -46,13 +48,11 @@ get '/' => sub ($c) {
     my $this_page  = $c->param('page') || 1;
     my $last_page  = $c->message->get_last_page();
     my $view_posts = $c->message->get_posts($this_page);
-    my $post_count = format_number $c->message->get_post_count();
 
     $c->stash(
         view_posts => $view_posts,
         this_page  => $this_page,
-        last_page  => $last_page,
-        post_count => $post_count
+        last_page  => $last_page
         );
 
     $c->render();
