@@ -11,6 +11,10 @@ body {
     font-size: 1.25em;
 }
 
+p {
+    overflow-wrap: break-word;
+}
+
 a {
     color: cyan;
     text-decoration: none;
