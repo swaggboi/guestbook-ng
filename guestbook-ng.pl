@@ -13,6 +13,7 @@ use Number::Format qw{format_number};
 # Load the model
 use lib 'lib';
 use GuestbookNg::Model::Message;
+use GuestbookNg::Model::Counter;
 
 # Plugins
 plugin 'Config';
@@ -27,6 +28,10 @@ helper pg => sub {
 
 helper message => sub {
     state $message = GuestbookNg::Model::Message->new(pg => shift->pg)
+};
+
+helper counter => sub {
+    state $counter = GuestbookNg::Model::Counter->new(pg => shift->pg)
 };
 
 # Routes
