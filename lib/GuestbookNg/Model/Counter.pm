@@ -15,17 +15,17 @@ sub new($class, $pg, $pg_object) {
 
 sub get_visitor_count($self) {
     $self->pg->db->query(<<~'END_SQL')->text()
-        SELECT visitor_counter
+        SELECT counter_value
           FROM counters
-         WHERE counter_id = 1;
+         WHERE counter_name = 'visitor';
        END_SQL
 }
 
 sub increment_visitor_count($self) {
     $self->pg->db->query(<<~'END_SQL')->text()
         UPDATE counters
-           SET visitor_counter = visitor_counter + 1
-         WHERE counter_id = 1;
+           SET counter_value = counter_value + 1
+         WHERE counter_name = 'visitor';
        END_SQL
 }
 
