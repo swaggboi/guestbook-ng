@@ -35,7 +35,7 @@ under sub ($c) {
     # https://paramdeo.com/blog/opting-your-website-out-of-googles-floc-network
     $c->res->headers->header('Permissions-Policy', 'interest-cohort=()');
 
-    $c->session(expiration => 604800);
+    $c->session(expiration => 86400);
 
     $c->stash(status => 403) if $c->flash('error');
 
