@@ -7,10 +7,7 @@ use Mojo::Base -base, -signatures;
 has 'pg';
 
 sub new($class, $pg, $pg_object) {
-    bless {
-        $pg       => $pg_object,
-        max_posts => 5
-    }
+    bless {$pg => $pg_object}
 }
 
 sub get_visitor_count($self) {
