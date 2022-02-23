@@ -7,8 +7,7 @@ body {
     background: #000;
     margin: 0em;
     color: #00FF00;
-    font-family: monospace;
-    font-size: 1.25em;
+    font-family: 'Monaco', monospace;
 }
 
 p {
@@ -105,7 +104,8 @@ article {
 }
 
 article .message.field {
-    font-family: cursive;
+    font-family: 'Bradley Hand', 'Apple Chancery', cursive;
+    font-size: 1.25em;
     margin-bottom: 0em;
     white-space: pre-wrap;
 }
