@@ -110,10 +110,8 @@ article .message.field {
     white-space: pre-wrap;
 }
 
-article .message.field.heading {
+article h3 {
     margin-bottom: 0em;
-    font-size: 0.95em;
-    font-family: 'Monaco', monospace;
 }
 
 .captcha {
