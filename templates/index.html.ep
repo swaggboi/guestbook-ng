@@ -4,8 +4,8 @@
 <div class="articles">
   <% for my $post (@$view_posts) { =%>
   <article>
-    <h3><%= @$post[0] %></h3>
     <section class="message field">
+      <h3 class="message field heading"><%= @$post[0] %></h3>
       <blockquote><p><%= @$post[2] %></p></blockquote>
     </section>
     <section class="name field">
