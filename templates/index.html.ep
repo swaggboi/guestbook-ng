@@ -9,12 +9,12 @@
       <blockquote><p><%= @$post[2] %></p></blockquote>
     </section>
     <section class="name field">
-      <figcaption>
+      <p>
         - <%= @$post[1] %>
         <% if (@$post[3]) { =%>
         (<%= link_to Homepage => @$post[3] %>)
         <% } =%>
-      </figcaption>
+      </p>
     </section>
     <span hidden>Message ID: <%= @$post[4] %></span>
   </article>
