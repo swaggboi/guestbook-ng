@@ -9,7 +9,7 @@
       <blockquote><p><%= @$post[2] %></p></blockquote>
     </section>
     <section class="name field">
-      <p>
+      <p style="margin: 0 0 0 0;">
         - <%= @$post[1] %>
         <% if (@$post[3]) { =%>
         (<%= link_to Homepage => @$post[3] %>)
