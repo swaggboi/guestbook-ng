@@ -5,17 +5,17 @@
   <% for my $post (@$view_posts) { =%>
   <article>
     <h3><%= @$post[0] %></h3>
-    <section class="message field">
+    <div class="message field">
       <blockquote><p><%= @$post[2] %></p></blockquote>
-    </section>
-    <section class="name field">
-      <figcaption>
+    </div>
+    <div class="name field">
+      <p style="margin: 0 0 0 0;">
         - <%= @$post[1] %>
         <% if (@$post[3]) { =%>
         (<%= link_to Homepage => @$post[3] %>)
         <% } =%>
-      </figcaption>
-    </section>
+      </p>
+    </div>
     <span hidden>Message ID: <%= @$post[4] %></span>
   </article>
   <% } =%>
