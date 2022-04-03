@@ -108,10 +108,10 @@ any [qw{GET POST}], '/sign' => sub ($c) {
     # attempt to confuse a (hypothetical) bot that would try to
     # select what it thinks is the right answer
     my @answers             = shuffle(0, 'false', undef);
-    my $right_answer_label  = 'I\'m ready to sign (choose this one)';
+    my $right_answer_label  = "I'm ready to sign (choose this one)";
     my @wrong_answer_labels = shuffle(
-        'I don\'t want to sign (wrong answer)',
-        'This is spam/I\'m a bot, do not sign'
+        "I don't want to sign (wrong answer)",
+        "This is spam/I'm a bot, do not sign"
         );
 
     $c->stash(
