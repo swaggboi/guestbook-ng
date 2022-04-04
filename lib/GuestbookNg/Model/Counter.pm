@@ -19,7 +19,7 @@ sub get_visitor_count($self) {
 }
 
 sub increment_visitor_count($self) {
-    $self->pg->db->query(<<~'END_SQL')->text()
+    $self->pg->db->query(<<~'END_SQL')
         UPDATE counters
            SET counter_value = counter_value + 1
          WHERE counter_name = 'visitor';
