@@ -38,7 +38,8 @@
 </div>
 <div class="outer">
   <footer>
-    <p><%= $post_count %> visitors have signed the guestbook to date.</p>
+    <p><%= $post_count %> of <%= $visitor_count %> total visitors have
+      signed the guestbook to date.</p>
   </footer>
 </div>
 </body>

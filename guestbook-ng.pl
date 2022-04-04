@@ -44,7 +44,10 @@ under sub ($c) {
 
     $c->stash(status => 403) if $c->flash('error');
 
-    $c->stash(post_count => format_number $c->message->get_post_count);
+    $c->stash(
+        post_count    => format_number($c->message->get_post_count),
+        visitor_count => format_number($c->counter->get_visitor_count)
+        );
 
     1;
 };
@@ -129,7 +132,7 @@ app->secrets(app->config->{'secrets'}) || die $@;
 app->message->max_posts(app->config->{'max_posts'})
     if app->config->{'max_posts'};
 
-app->pg->migrations->from_dir('migrations')->migrate(7);
+app->pg->migrations->from_dir('migrations')->migrate(8);
 
 app->asset->process('swagg.css', 'css/swagg.css');
 
