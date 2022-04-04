@@ -43,7 +43,7 @@ under sub ($c) {
     unless ($c->session('counted')) {
         $c->counter->increment_visitor_count();
         $c->session(
-            expiration => 86400,
+            expiration => 3600,
             counted    => 1
             );
     }
