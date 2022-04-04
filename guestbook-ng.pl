@@ -44,7 +44,7 @@ under sub ($c) {
         $c->counter->increment_visitor_count();
         $c->session(
             expiration => 86400,
-            counted => 'true'
+            counted    => 1
             );
     }
 
