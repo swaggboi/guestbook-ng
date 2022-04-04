@@ -54,4 +54,4 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. Visitor counter
+1. A view to see individual posts
