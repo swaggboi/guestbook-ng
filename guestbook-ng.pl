@@ -43,10 +43,14 @@ under sub ($c) {
     unless ($c->session('counted')) {
         $c->counter->increment_visitor_count();
         $c->session(
-            expiration => 3600,
-            counted    => 1
+            expires => time() + 3600,
+            counted => 1
             );
     }
+    # Delete this since I was supposed to be using 'expires' instead
+    # of 'expiration'; the difference is outlined here:
+    # https://docs.mojolicious.org/Mojolicious/Controller#session
+    delete $c->session('expiration') if $c->session('expiration');
 
     $c->stash(status => 403) if $c->flash('error');
 
