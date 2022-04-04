@@ -50,7 +50,7 @@ under sub ($c) {
     # Delete this since I was supposed to be using 'expires' instead
     # of 'expiration'; the difference is outlined here:
     # https://docs.mojolicious.org/Mojolicious/Controller#session
-    delete $c->session('expiration') if $c->session('expiration');
+    delete $c->session->{'expiration'} if $c->session('expiration');
 
     $c->stash(status => 403) if $c->flash('error');
 
