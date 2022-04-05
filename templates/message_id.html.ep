@@ -1,0 +1,20 @@
+% layout 'default';
+% title 'View';
+<h2>Messages from the World Wide Web</h2>
+<div class="articles">
+  <article>
+    <h3><%= @$view_post[0] %></h3>
+    <div class="message field">
+      <blockquote><p><%= @$view_post[2] %></p></blockquote>
+    </div>
+    <div class="name field">
+      <p style="margin: 0 0 0 0;">
+        - <%= @$view_post[1] %>
+        <% if (@$view_post[3]) { =%>
+        (<%= link_to Homepage => @$view_post[3] %>)
+        <% } =%>
+      </p>
+    </div>
+    <span hidden>Message ID: <%= @$view_post[4] %></span>
+  </article>
+</div>

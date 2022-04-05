@@ -132,12 +132,20 @@ any [qw{GET POST}], '/sign' => sub ($c) {
     $c->render();
 };
 
-under '/message';
+group {
+    under '/message';
 
-get '/:id', [id => qr/[0-9]+/] => sub ($c) {
-    my $message_id = $c->param('id');
+    get '/:message_id', [message_id => qr/[0-9]+/] => sub ($c) {
+        my $message_id = $c->param('message_id');
+        my @view_post  = $c->message->get_post_by_id($message_id);
 
-    $c->render(text => "You've requested message number: $message_id");
+        $c->stash(status => 404) unless $view_post[0];
+
+        $c->stash(view_post => @view_post);
+
+        #$c->render(text => "You've requested message number: $message_id");
+        $c->render();
+    };
 };
 
 # Send it

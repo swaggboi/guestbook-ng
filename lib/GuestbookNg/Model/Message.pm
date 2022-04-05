@@ -95,7 +95,7 @@ sub create_post($self, $name, $message, $url = undef, $spam = 1) {
 }
 
 sub max_posts($self, $value = undef) {
-    return $self->{'max_posts'} = $value // $self->{'max_posts'}
+    $self->{'max_posts'} = $value // $self->{'max_posts'}
 }
 
 sub get_last_page($self, $want_spam = undef) {
@@ -103,23 +103,35 @@ sub get_last_page($self, $want_spam = undef) {
     my $last_page  = int($post_count / $self->{'max_posts'});
 
     # Add a page if we have "remainder" posts
-    return $post_count % $self->{'max_posts'} ? ++$last_page : $last_page;
+    $post_count % $self->{'max_posts'} ? ++$last_page : $last_page;
 }
 
 sub get_post_count($self) {
-    return $self->pg->db->query(<<~'END_SQL')->text()
-               SELECT COUNT(*)
-                 FROM messages
-                WHERE NOT is_spam;
-              END_SQL
+    $self->pg->db->query(<<~'END_SQL')->text()
+        SELECT COUNT(*)
+          FROM messages
+         WHERE NOT is_spam;
+       END_SQL
 }
 
 sub get_spam_count($self) {
-    return $self->pg->db->query(<<~'END_SQL')->text()
-               SELECT COUNT(*)
-                 FROM messages
-                WHERE is_spam;
-              END_SQL
+    $self->pg->db->query(<<~'END_SQL')->text()
+        SELECT COUNT(*)
+          FROM messages
+         WHERE is_spam;
+       END_SQL
+}
+
+sub get_post_by_id($self, $message_id) {
+    $self->pg->db->query(<<~'END_SQL', $message_id)->array()
+        SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
+               visitor_name,
+               message,
+               homepage_url,
+               message_id
+          FROM messages
+         WHERE message_id = ?;
+       END_SQL
 }
 
 1;
