@@ -132,6 +132,14 @@ any [qw{GET POST}], '/sign' => sub ($c) {
     $c->render();
 };
 
+under '/message';
+
+get '/:id', [id => qr/[0-9]+/] => sub ($c) {
+    my $message_id = $c->param('id');
+
+    $c->render(text => "You've requested message number: $message_id");
+};
+
 # Send it
 app->secrets(app->config->{'secrets'}) || die $@;
 
