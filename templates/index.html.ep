@@ -4,6 +4,9 @@
 <div class="articles">
   <% for my $post (@$view_posts) { =%>
   <article>
+    <span class="message_id field">
+      <%= link_to "#@$post[4]" => "/message/@$post[4]" %>
+    </span>
     <h3><%= @$post[0] %></h3>
     <div class="message field">
       <blockquote><p><%= @$post[2] %></p></blockquote>
@@ -16,7 +19,6 @@
         <% } =%>
       </p>
     </div>
-    <span hidden>Message ID: <%= @$post[4] %></span>
   </article>
   <% } =%>
 </div>

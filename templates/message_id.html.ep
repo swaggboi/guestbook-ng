@@ -3,6 +3,9 @@
 <h2>Messages from the World Wide Web</h2>
 <div class="articles">
   <article>
+    <span class="message_id field">
+      <%= link_to "#@$view_post[4]" => "/message/@$view_post[4]" %>
+    </span>
     <h3><%= @$view_post[0] %></h3>
     <div class="message field">
       <blockquote><p><%= @$view_post[2] %></p></blockquote>
@@ -15,6 +18,5 @@
         <% } =%>
       </p>
     </div>
-    <span hidden>Message ID: <%= @$view_post[4] %></span>
   </article>
 </div>
