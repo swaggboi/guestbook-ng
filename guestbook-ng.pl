@@ -52,15 +52,14 @@ under sub ($c) {
 
     $c->stash(
         post_count    => format_number($c->message->get_post_count),
+        this_url      => $c->req->url->to_abs(),
         visitor_count => format_number($c->counter->get_visitor_count)
         );
 
     1;
 };
 
-get '/' => sub ($c) {
-    $c->redirect_to('view');
-};
+get '/' => sub ($c) { $c->redirect_to('view') };
 
 any [qw{GET POST}], '/sign' => sub ($c) {
     my $v = $c->validation();
