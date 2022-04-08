@@ -84,7 +84,7 @@ any [qw{GET POST}], '/sign' => sub ($c) {
 
             $c->flash(error => 'This message was flagged as spam') if $spam;
 
-            return $c->redirect_to('index');
+            return $c->redirect_to('view');
         }
     }
 
@@ -124,13 +124,17 @@ group {
 };
 
 group {
-    under '/spam';
+    under '/:page', [page => ['spam', 'view']];
 
     get '/:number', [number => qr/[0-9]+/], {number => 1} => sub ($c) {
-        my $this_page  = $c->param('number');
-        my $last_page  = $c->message->get_last_page('spam');
-        my $view_posts = $c->message->get_spam($this_page);
         my $base_path  = $c->url_for(number => undef);
+        my $this_page  = $c->param('number');
+        my $last_page  =
+            $base_path eq '/view' ? $c->message->get_last_page()
+                                  : $c->message->get_last_page(1);
+        my $view_posts =
+            $base_path eq '/view' ? $c->message->get_posts($this_page)
+                                  : $c->message->get_spam($this_page);
 
         $c->stash(
             view_posts => $view_posts,
@@ -140,26 +144,6 @@ group {
             );
 
         $c->render();
-    };
-};
-
-group {
-    under '/view';
-
-    get '/:number', [number => qr/[0-9]+/], {number => 1} => sub ($c) {
-            my $this_page  = $c->param('number');
-            my $last_page  = $c->message->get_last_page('spam');
-            my $view_posts = $c->message->get_spam($this_page);
-            my $base_path  = $c->url_for(number => undef);
-
-            $c->stash(
-                view_posts => $view_posts,
-                this_page  => $this_page,
-                last_page  => $last_page,
-                base_path  => $base_path
-                );
-
-            $c->render();
     };
 };
 
