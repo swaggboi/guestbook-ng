@@ -58,37 +58,9 @@ under sub ($c) {
     1;
 };
 
-#get '/' => sub ($c) {
-#    my $this_page  = $c->param('page') || 1;
-#    my $last_page  = $c->message->get_last_page();
-#    my $view_posts = $c->message->get_posts($this_page);
-#
-#    $c->stash(
-#        view_posts => $view_posts,
-#        this_page  => $this_page,
-#        last_page  => $last_page
-#        );
-#
-#    $c->render();
-#} => 'index';
-
 get '/' => sub ($c) {
     $c->redirect_to('view');
 };
-
-get '/spam' => sub ($c) {
-    my $this_page  = $c->param('page') || 1;
-    my $last_page  = $c->message->get_last_page('spam');
-    my $view_posts = $c->message->get_spam($this_page);
-
-    $c->stash(
-        view_posts => $view_posts,
-        this_page  => $this_page,
-        last_page  => $last_page
-        );
-
-    $c->render();
-} => 'index';
 
 any [qw{GET POST}], '/sign' => sub ($c) {
     my $v = $c->validation();
@@ -146,6 +118,26 @@ group {
         $c->stash(status => 404) unless $view_post[0];
 
         $c->stash(view_post => @view_post);
+
+        $c->render();
+    };
+};
+
+group {
+    under '/spam';
+
+    get '/:page_number', {page_number => 1} => sub ($c) {
+        my $this_page  = $c->param('page_number');
+        my $last_page  = $c->message->get_last_page('spam');
+        my $view_posts = $c->message->get_spam($this_page);
+        my $base_path  = $c->url_for(page_number => undef);
+
+        $c->stash(
+            view_posts => $view_posts,
+            this_page  => $this_page,
+            last_page  => $last_page,
+            base_path  => $base_path
+            );
 
         $c->render();
     };
