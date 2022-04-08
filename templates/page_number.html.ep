@@ -1,0 +1,29 @@
+% layout 'default';
+% title 'View';
+<h2>Messages from the World Wide Web</h2>
+<div class="articles">
+  <% for my $view_post (@$view_posts) { =%>
+  <article>
+    <span class="message_id field">
+      <%= link_to "#@$view_post[4]" => "/message/@$view_post[4]" %>
+    </span>
+    <h3><%= @$view_post[0] %></h3>
+    <div class="message field">
+      <blockquote><p><%= @$view_post[2] %></p></blockquote>
+    </div>
+    <div class="name field">
+      <p style="margin: 0 0 0 0;">
+        - <%= @$view_post[1] %>
+        <% if (@$view_post[3]) { =%>
+        (<%= link_to Homepage => @$view_post[3] %>)
+        <% } =%>
+      </p>
+    </div>
+  </article>
+  <% } =%>
+</div>
+<% if ($last_page && $last_page != 1) { =%>
+<nav>
+  <%= pagination $this_page, $last_page, $base_path . '/{page}' %>
+</nav>
+<% } =%>
