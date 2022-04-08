@@ -3,11 +3,11 @@
 <head>
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Swagg::Net::Guestbook">
+  <meta property="og:title" content="Swagg::Net::Guestbook - <%= title %>">
   <meta property="og:description" content="Messages from the World Wide Web">
-  <meta property="og:url" content="https://www.swagg.net/cgi-bin/guest.cgi">
+  <meta property="og:url" content="<%= $this_url %>">
   <meta property="og:site_name" content="Swagg::Net::Guestbook">
-  <meta name="twitter:title" content="Swagg::Net::Guestbook">
+  <meta name="twitter:title" content="Swagg::Net::Guestbook - <%= title %>">
   <meta name="twitter:description" content="Messages from the World Wide Web">
   <meta name="twitter:creator" content="@swaggboi@eattherich.club">
   <meta name="twitter:site" content="@swaggboi@eattherich.club">
