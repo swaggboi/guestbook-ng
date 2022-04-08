@@ -126,11 +126,11 @@ group {
 group {
     under '/spam';
 
-    get '/:page_number', {page_number => 1} => sub ($c) {
-        my $this_page  = $c->param('page_number');
+    get '/:number', [number => qr/[0-9]+/], {number => 1} => sub ($c) {
+        my $this_page  = $c->param('number');
         my $last_page  = $c->message->get_last_page('spam');
         my $view_posts = $c->message->get_spam($this_page);
-        my $base_path  = $c->url_for(page_number => undef);
+        my $base_path  = $c->url_for(number => undef);
 
         $c->stash(
             view_posts => $view_posts,
@@ -146,20 +146,20 @@ group {
 group {
     under '/view';
 
-    get '/:page_number', {page_number => 1} => sub ($c) {
-        my $this_page  = $c->param('page_number');
-        my $last_page  = $c->message->get_last_page('spam');
-        my $view_posts = $c->message->get_spam($this_page);
-        my $base_path  = $c->url_for(page_number => undef);
+    get '/:number', [number => qr/[0-9]+/], {number => 1} => sub ($c) {
+            my $this_page  = $c->param('number');
+            my $last_page  = $c->message->get_last_page('spam');
+            my $view_posts = $c->message->get_spam($this_page);
+            my $base_path  = $c->url_for(number => undef);
 
-        $c->stash(
-            view_posts => $view_posts,
-            this_page  => $this_page,
-            last_page  => $last_page,
-            base_path  => $base_path
-            );
+            $c->stash(
+                view_posts => $view_posts,
+                this_page  => $this_page,
+                last_page  => $last_page,
+                base_path  => $base_path
+                );
 
-        $c->render();
+            $c->render();
     };
 };
 
