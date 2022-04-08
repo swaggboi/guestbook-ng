@@ -11,6 +11,7 @@
   <meta name="twitter:description" content="Messages from the World Wide Web">
   <meta name="twitter:creator" content="@swaggboi@eattherich.club">
   <meta name="twitter:site" content="@swaggboi@eattherich.club">
+  <meta content="Messages from the World Wide Web" name="description">
   <title>Swagg::Net::Guestbook - <%= title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= asset 'swagg.css' %>

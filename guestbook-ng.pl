@@ -129,12 +129,12 @@ group {
     get '/:number', [number => qr/[0-9]+/], {number => 1} => sub ($c) {
         my $base_path  = $c->url_for(number => undef);
         my $this_page  = $c->param('number');
-        my $last_page  =
-            $base_path eq '/view' ? $c->message->get_last_page()
-                                  : $c->message->get_last_page(1);
-        my $view_posts =
-            $base_path eq '/view' ? $c->message->get_posts($this_page)
-                                  : $c->message->get_spam($this_page);
+        my $last_page  = $base_path eq '/view'
+            ? $c->message->get_last_page()
+            : $c->message->get_last_page(1);
+        my $view_posts = $base_path eq '/view'
+            ? $c->message->get_posts($this_page)
+            : $c->message->get_spam($this_page);
 
         $c->stash(
             view_posts => $view_posts,
