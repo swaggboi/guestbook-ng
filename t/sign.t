@@ -40,6 +40,7 @@ $t->post_ok('/sign', form => \%invalid_form)->status_is(200)
     ->content_like(qr/URL does not appear to be/);
 
 # Spam test
-$t->post_ok('/sign', form => \%spam_form)->status_is(403);
+$t->post_ok('/sign', form => \%spam_form)->status_is(403)
+    ->text_is(p => 'This message was flagged as spam');
 
 done_testing();
