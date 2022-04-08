@@ -15,5 +15,8 @@ $t->get_ok('/spam')->status_is(200)
     ->text_is(h2 => 'Messages from the World Wide Web');
 $t->get_ok('/spam/1')->status_is(200)
     ->text_is(h2 => 'Messages from the World Wide Web');
+# Page shouldn't exist (unless Guestbook gets very popular!)
+$t->get_ok('/spam/1337')->status_is(404)
+    ->text_is(h2 => 'Messages from the World Wide Web');
 
 done_testing();
