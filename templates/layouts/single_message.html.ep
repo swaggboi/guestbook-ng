@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Swagg::Net::Guestbook - <%= title %>">
+  <meta property="og:description" content="<%= @$view_post[2] %>">
+  <meta property="og:url" content="<%= $this_url %>">
+  <meta property="og:site_name" content="Swagg::Net::Guestbook">
+  <meta name="twitter:title" content="Swagg::Net::Guestbook - <%= title %>">
+  <meta name="twitter:description" content="<%= @$view_post[2] %>">
+  <meta name="twitter:creator" content="@swaggboi@eattherich.club">
+  <meta name="twitter:site" content="@swaggboi@eattherich.club">
+  <meta content="<%= @$view_post[2] %>" name="description">
+  <title>Swagg::Net::Guestbook - <%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= asset 'swagg.css' %>
+</head>
+<body>
+<div class="outer">
+  <h1 id="top">Swagg::Net::Guestbook</h1>
+  <nav>
+    <%= link_to View => '/view' %>
+    <%= link_to Sign => '/sign' %>
+    <%= link_to Home => 'https://www.swagg.net' %>
+  </nav>
+  <% if (flash 'error') { =%>
+  <div class="error">
+    <h2>Stop! You've violated the law:</h2>
+    <p><%= flash 'error' %></p>
+    <p>Please report to the
+      <%= link_to 'cyber police', 'mailto:swaggboi@slackware.uk' %>!</p>
+  </div>
+  <% } =%>
+  <hr>
+</div>
+<div class="inner">
+<%= content =%>
+</div>
+<div class="outer">
+  <footer>
+    <p><%= $post_count %> of <%= $visitor_count %> total visitors have
+      signed the guestbook to date.</p>
+  </footer>
+</div>
+</body>
+</html>

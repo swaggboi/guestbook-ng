@@ -135,6 +135,8 @@ group {
             ? $c->message->get_posts($this_page)
             : $c->message->get_spam($this_page);
 
+        $c->stash(status => 404) unless @$view_posts[0];
+
         $c->stash(
             view_posts => $view_posts,
             this_page  => $this_page,

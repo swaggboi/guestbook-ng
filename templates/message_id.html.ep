@@ -1,4 +1,4 @@
-% layout 'default';
+% layout 'single_message';
 % title 'View';
 <h2>Messages from the World Wide Web</h2>
 <% if (@$view_post[0]) { =%>
