@@ -20,8 +20,18 @@ my %spam_form    = (
     message => 'hi',
     answer  => 0
     );
+my %valid_form   = (
+    name    => 'swagg boi',
+    url     => 'http://localhost',
+    message => 'Ayy... lmao',
+    answer  => 'false'
+    );
 
 $t->ua->max_redirects(1);
+
+# Valid requests
+$t->get_ok('/sign')->status_is(200)->text_is(h2 => 'Sign the Guestbook');
+$t->post_ok('/sign', form => \%valid_form)->status_is(200);
 
 # Invalid input
 $t->post_ok('/sign', form => \%invalid_form)->status_is(200)

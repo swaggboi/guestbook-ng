@@ -1,10 +1,11 @@
 % layout 'default';
 % title 'View';
 <h2>Messages from the World Wide Web</h2>
+<% if (@$view_post[0]) { =%>
 <div class="articles">
   <article>
     <span class="message_id field">
-      <%= link_to "#@$view_post[4]" => "/message/@$view_post[4]" %>
+      <%= link_to "#@$view_post[4]", "/message/@$view_post[4]" %>
     </span>
     <h3><%= @$view_post[0] %></h3>
     <div class="message field">
@@ -20,3 +21,4 @@
     </div>
   </article>
 </div>
+<% } =%>
