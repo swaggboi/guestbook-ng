@@ -20,8 +20,8 @@
 <div class="outer">
   <h1 id="top">Swagg::Net::Guestbook</h1>
   <nav>
-    <%= link_to View => '/view' %>
-    <%= link_to Sign => '/sign' %>
+    <%= link_to View => page => {page => 'view'} %>
+    <%= link_to Sign => 'sign' %>
     <%= link_to Home => 'https://www.swagg.net' %>
   </nav>
   <% if (flash 'error') { =%>
