@@ -59,7 +59,7 @@ under sub ($c) {
     1;
 };
 
-get '/' => sub ($c) { $c->redirect_to('view') };
+get '/' => sub ($c) { $c->redirect_to('/view') };
 
 any [qw{GET POST}], '/sign' => sub ($c) {
     my $v = $c->validation();
@@ -83,7 +83,7 @@ any [qw{GET POST}], '/sign' => sub ($c) {
 
             $c->flash(error => 'This message was flagged as spam') if $spam;
 
-            return $c->redirect_to('view');
+            return $c->redirect_to('/view');
         }
     }
 
