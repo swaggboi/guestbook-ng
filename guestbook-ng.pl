@@ -62,7 +62,7 @@ under sub ($c) {
 get '/' => sub ($c) { $c->redirect_to(page => {page => 'view'}) };
 
 any [qw{GET POST}], '/sign' => sub ($c) {
-    my $v = $c->validation();
+    my $v = $c->validation() if $c->req->method eq 'POST';
 
     if ($c->req->method eq 'POST' && $v->has_data) {
         my $name    = $c->param('name') || 'Anonymous';
