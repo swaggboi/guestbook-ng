@@ -130,7 +130,7 @@ group {
         my $this_page  = $c->param('number');
         my $last_page  = $base_path eq '/view'
             ? $c->message->get_last_page()
-            : $c->message->get_last_page(1);
+            : $c->message->get_last_page('spam');
         my $view_posts = $base_path eq '/view'
             ? $c->message->get_posts($this_page)
             : $c->message->get_spam($this_page);
