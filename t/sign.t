@@ -26,18 +26,23 @@ my %valid_form   = (
     message => 'Ayy... lmao',
     answer  => 'false'
     );
+# Null POST body
+my %null_form;
 
 $t->ua->max_redirects(1);
 
 # Valid requests
 $t->get_ok('/sign')->status_is(200)->text_is(h2 => 'Sign the Guestbook');
-$t->post_ok('/sign', form => \%valid_form)->status_is(200);
+$t->post_ok('/sign', form => \%valid_form)->status_is(200)
+    ->text_is(h2 => 'Messages from the World Wide Web');
 
 # Invalid input
-$t->post_ok('/sign', form => \%invalid_form)->status_is(200)
+$t->post_ok('/sign', form => \%invalid_form)->status_is(400)
     ->content_like(qr/cannot be blank/);
-$t->post_ok('/sign', form => \%invalid_form)->status_is(200)
+$t->post_ok('/sign', form => \%invalid_form)->status_is(400)
     ->content_like(qr/URL does not appear to be/);
+$t->post_ok('/sign', form => \%null_form)->status_is(400)
+    ->text_is(h2 => 'Sign the Guestbook');
 
 # Spam test
 $t->post_ok('/sign', form => \%spam_form)->status_is(403)

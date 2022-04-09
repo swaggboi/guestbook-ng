@@ -64,7 +64,7 @@ get '/' => sub ($c) { $c->redirect_to(page => {page => 'view'}) };
 any [qw{GET POST}], '/sign' => sub ($c) {
     my $v = $c->validation() if $c->req->method eq 'POST';
 
-    if ($c->req->method eq 'POST' && $v->has_data) {
+    if ($v && $v->has_data) {
         my $name    = $c->param('name') || 'Anonymous';
         my $url     = $c->param('url');
         my $message = $c->param('message');
@@ -78,13 +78,20 @@ any [qw{GET POST}], '/sign' => sub ($c) {
         $v->optional('url', 'not_empty')->size(1, 255)
             ->like(qr/$RE{URI}{HTTP}{-scheme => qr<https?>}/);
 
-        unless ($v->has_error) {
+        if ($v->has_error) {
+            $c->stash(status => 400)
+        }
+        else {
             $c->message->create_post($name, $message, $url, $spam);
 
             $c->flash(error => 'This message was flagged as spam') if $spam;
 
             return $c->redirect_to(page => {page => 'view'});
         }
+    }
+    # Throw a 400 for POST with null body too
+    elsif ($v) {
+        $c->stash(status => 400)
     }
 
     # Try to randomize things for the CAPTCHA challenge. The
