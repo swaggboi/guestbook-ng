@@ -1,4 +1,4 @@
-FROM perl:5.34.1-slim
+FROM perl:5.34
 
 # Move it
 WORKDIR /opt
