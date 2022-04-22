@@ -10,7 +10,7 @@ sub new($class, $pg, $pg_object) {
     bless {
         $pg       => $pg_object,
         max_posts => 5
-    }
+    }, $class
 }
 
 sub get_posts($self, $this_page = undef) {
