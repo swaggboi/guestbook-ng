@@ -27,6 +27,16 @@ Mojolicious blockchain technologies powered by AI.
 
 `secrets` and the Postgres connection string are mandatory
 
+## Discord Webhook
+
+If you provide a file in the same directory called `.tom.url`
+containing a Discord Webhook URL then a notification will go out when
+someone signs the Guestbook. If you're using Docker but don't want the
+Webhook behavior, just create an empty file to make the Docker build
+work:
+
+    $ touch .tom.url
+
 ## Testing
 
     $ prove -l
@@ -55,4 +65,4 @@ Add the `-v` option for more verbose output
 ## TODOs
 
 1. Do something about the hardcoded URL in Webhook stuff
-1. Document Webhook stuff
+1. Implement try/catch for Webhook since we're using Perl 5.36
