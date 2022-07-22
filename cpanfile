@@ -8,3 +8,4 @@ requires 'Mojolicious::Plugin::AssetPack';
 requires 'Regexp::Common::URI';
 requires 'CSS::Minifier::XS';
 requires 'Number::Format';
+requires  WebService::Discord::Webhook;

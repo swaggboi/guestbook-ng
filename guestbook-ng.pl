@@ -8,6 +8,7 @@ use Mojo::Pg;
 use List::Util qw{shuffle};
 use Regexp::Common qw{URI};
 use Number::Format qw{format_number};
+use WebService::Discord::Webhook;
 #use Data::Dumper; # Uncomment for debugging
 
 # Load the model
