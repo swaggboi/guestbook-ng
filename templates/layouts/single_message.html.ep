@@ -8,11 +8,15 @@
   <meta property="og:description" content="<%= @$view_post[2] %>">
   <meta property="og:url" content="<%= $this_url %>">
   <meta property="og:site_name" content="Swagg::Net::Guestbook">
+  <meta property="og:image"
+        content="https://guestbook.swagg.net/android-chrome-512x512.png">
   <meta name="twitter:title"
         content="Swagg::Net::Guestbook - Message #<%= @$view_post[4] %>">
   <meta name="twitter:description" content="<%= @$view_post[2] %>">
   <meta name="twitter:creator" content="@swaggboi@eattherich.club">
   <meta name="twitter:site" content="Swagg::Net::Guestbook">
+  <meta name="twitter:image"
+        content="https://guestbook.swagg.net/android-chrome-512x512.png">
   <meta content="<%= @$view_post[2] %>" name="description">
   <title>Swagg::Net::Guestbook - Message #<%= @$view_post[4] %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

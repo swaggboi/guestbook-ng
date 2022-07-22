@@ -7,10 +7,14 @@
   <meta property="og:description" content="Messages from the World Wide Web">
   <meta property="og:url" content="<%= $this_url %>">
   <meta property="og:site_name" content="Swagg::Net::Guestbook">
+  <meta property="og:image"
+        content="https://guestbook.swagg.net/android-chrome-512x512.png">
   <meta name="twitter:title" content="Swagg::Net::Guestbook - <%= title %>">
   <meta name="twitter:description" content="Messages from the World Wide Web">
   <meta name="twitter:creator" content="@swaggboi@eattherich.club">
   <meta name="twitter:site" content="Swagg::Net::Guestbook">
+  <meta name="twitter:image"
+        content="https://guestbook.swagg.net/android-chrome-512x512.png">
   <meta content="Messages from the World Wide Web" name="description">
   <title>Swagg::Net::Guestbook - <%= title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
