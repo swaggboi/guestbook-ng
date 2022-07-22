@@ -76,8 +76,6 @@ sub get_spam($self, $this_page = undef) {
 }
 
 sub create_post($self, $name, $message, $url = undef, $spam = 1) {
-    my $message_id = $self->get_last_message_id();
-
     if ($url) {
         $self->pg->db->query(<<~'END_SQL', $name, $message, $url, $spam)
             INSERT INTO messages (visitor_name, message, homepage_url, is_spam)
@@ -90,8 +88,6 @@ sub create_post($self, $name, $message, $url = undef, $spam = 1) {
             VALUES (?, ?, ?);
            END_SQL
     }
-
-    ++$message_id;
 }
 
 sub max_posts($self, $value = undef) {

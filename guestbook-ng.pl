@@ -85,15 +85,16 @@ any [qw{GET POST}], '/sign' => sub ($c) {
             $c->stash(status => 400)
         }
         else {
-            my $new_message_id =
-                $c->message->create_post($name, $message, $url, $spam);
+            $c->message->create_post($name, $message, $url, $spam);
 
             if ($spam) {
                 $c->flash(error => 'This message was flagged as spam')
             }
             # Send this notification if there's a Webhook URL
             elsif (app->mode() eq 'production' && -s '.tom.url') {
-                my ($url_file, $url, $webhook);
+                my ($new_message_id, $url_file, $url, $webhook);
+
+                $new_message_id = $c->message->get_last_message_id();
 
                 open($url_file, '.tom.url') || die "$@";
                 chomp($url = <$url_file>);
