@@ -92,7 +92,7 @@ any [qw{GET POST}], '/sign' => sub ($c) {
                 $c->flash(error => 'This message was flagged as spam')
             }
             # Send this notification if there's a Webhook URL
-            elsif (-s '.tom.url') {
+            elsif (app->mode() eq 'production' && -s '.tom.url') {
                 my ($url_file, $url, $webhook);
 
                 open($url_file, '.tom.url') || die "$@";

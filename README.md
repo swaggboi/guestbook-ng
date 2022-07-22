@@ -54,4 +54,5 @@ Add the `-v` option for more verbose output
 
 ## TODOs
 
-1. Have FUN
+1. Do something about the hardcoded URL in Webhook stuff
+1. Document Webhook stuff
