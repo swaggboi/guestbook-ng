@@ -85,15 +85,28 @@ any [qw{GET POST}], '/sign' => sub ($c) {
             $c->stash(status => 400)
         }
         else {
-            my $blah =
+            my $new_message_id =
                 $c->message->create_post($name, $message, $url, $spam);
-            say Dumper $blah;
 
             if ($spam) {
                 $c->flash(error => 'This message was flagged as spam')
             }
+            # Send this notification if there's a Webhook URL
             elsif (-s '.tom.url') {
-                say 'do stuff here...'
+                my ($url_file, $url, $webhook);
+
+                open($url_file, '.tom.url') || die "$@";
+                chomp($url = <$url_file>);
+
+                $webhook = WebService::Discord::Webhook->new(
+                    url        => $url,
+                    verify_SSL => 1
+                    );
+
+                $webhook->execute(
+                    'content',
+                    "https://guestbook.swagg.net/message/$new_message_id"
+                    );
             }
 
             return $c->redirect_to(page => {page => 'view'});

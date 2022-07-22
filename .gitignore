@@ -35,5 +35,6 @@ inc/
 /pm_to_blib
 /*.zip
 
-# Conf file
+# Conf files
 /guestbook-ng.conf
+/.tom.url

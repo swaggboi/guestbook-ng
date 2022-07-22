@@ -18,8 +18,7 @@ sub get_posts($self, $this_page = undef) {
         my $row_count = $self->{'max_posts'};
         my $offset    = ($this_page - 1) * $row_count;
 
-        return $self->pg->db
-            ->query(<<~'END_SQL', $row_count, $offset)->arrays();
+        $self->pg->db->query(<<~'END_SQL', $row_count, $offset)->arrays();
             SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
@@ -32,7 +31,7 @@ sub get_posts($self, $this_page = undef) {
            END_SQL
     }
     else {
-        return $self->pg->db->query(<<~'END_SQL')->arrays()
+        $self->pg->db->query(<<~'END_SQL')->arrays()
             SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
@@ -50,8 +49,7 @@ sub get_spam($self, $this_page = undef) {
         my $row_count = $self->{'max_posts'};
         my $offset    = ($this_page - 1) * $row_count;
 
-        return $self->pg->db
-            ->query(<<~'END_SQL', $row_count, $offset)->arrays();
+        $self->pg->db->query(<<~'END_SQL', $row_count, $offset)->arrays();
             SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
@@ -64,7 +62,7 @@ sub get_spam($self, $this_page = undef) {
            END_SQL
     }
     else {
-        return $self->pg->db->query(<<~'END_SQL')->arrays()
+        $self->pg->db->query(<<~'END_SQL')->arrays()
             SELECT TO_CHAR(message_date, 'Dy Mon DD HH:MI:SS AM TZ YYYY'),
                    visitor_name,
                    message,
@@ -78,6 +76,8 @@ sub get_spam($self, $this_page = undef) {
 }
 
 sub create_post($self, $name, $message, $url = undef, $spam = 1) {
+    my $message_id = $self->get_last_message_id();
+
     if ($url) {
         $self->pg->db->query(<<~'END_SQL', $name, $message, $url, $spam)
             INSERT INTO messages (visitor_name, message, homepage_url, is_spam)
@@ -91,7 +91,7 @@ sub create_post($self, $name, $message, $url = undef, $spam = 1) {
            END_SQL
     }
 
-    return;
+    ++$message_id;
 }
 
 sub max_posts($self, $value = undef) {
@@ -131,6 +131,13 @@ sub get_post_by_id($self, $message_id) {
                message_id
           FROM messages
          WHERE message_id = ?;
+       END_SQL
+}
+
+sub get_last_message_id($self) {
+    $self->pg->db->query(<<~'END_SQL')->text()
+        SELECT MAX(message_id)
+          FROM messages;
        END_SQL
 }
 
