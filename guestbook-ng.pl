@@ -9,7 +9,7 @@ use List::Util qw{shuffle};
 use Regexp::Common qw{URI};
 use Number::Format qw{format_number};
 use WebService::Discord::Webhook;
-#use Data::Dumper; # Uncomment for debugging
+use Data::Dumper; # Uncomment for debugging
 
 # Load the model
 use lib 'lib';
@@ -85,9 +85,16 @@ any [qw{GET POST}], '/sign' => sub ($c) {
             $c->stash(status => 400)
         }
         else {
-            $c->message->create_post($name, $message, $url, $spam);
+            my $blah =
+                $c->message->create_post($name, $message, $url, $spam);
+            say Dumper $blah;
 
-            $c->flash(error => 'This message was flagged as spam') if $spam;
+            if ($spam) {
+                $c->flash(error => 'This message was flagged as spam')
+            }
+            elsif (-s '.tom.url') {
+                say 'do stuff here...'
+            }
 
             return $c->redirect_to(page => {page => 'view'});
         }
