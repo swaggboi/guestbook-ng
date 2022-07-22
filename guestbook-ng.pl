@@ -94,20 +94,26 @@ any [qw{GET POST}], '/sign' => sub ($c) {
             elsif (app->mode() eq 'production' && -s '.tom.url') {
                 my ($new_message_id, $url_file, $url, $webhook);
 
-                $new_message_id = $c->message->get_last_message_id();
+                eval {
+                    $new_message_id = $c->message->get_last_message_id();
 
-                open($url_file, '.tom.url') || die "$@";
-                chomp($url = <$url_file>);
+                    open($url_file, '.tom.url');
+                    chomp($url = <$url_file>);
 
-                $webhook = WebService::Discord::Webhook->new(
-                    url        => $url,
-                    verify_SSL => 1
-                    );
+                    $webhook = WebService::Discord::Webhook->new(
+                        url        => $url,
+                        verify_SSL => 1
+                        );
 
-                $webhook->execute(
-                    'content',
-                    "https://guestbook.swagg.net/message/$new_message_id"
-                    );
+                    $webhook->execute(
+                        'content',
+                        "https://guestbook.swagg.net/message/$new_message_id"
+                        );
+                } or do {
+                    $@ //= 'unknown error';
+
+                    say "WEBHOOK URL $url FAILED: $@";
+                }
             }
 
             return $c->redirect_to(page => {page => 'view'});
