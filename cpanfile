@@ -10,3 +10,4 @@ requires 'CSS::Minifier::XS';
 requires 'Number::Format';
 requires 'WebService::Discord::Webhook';
 requires 'IO::Socket::SSL';
+requires 'Try::Tiny';
