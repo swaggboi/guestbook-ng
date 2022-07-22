@@ -1,4 +1,4 @@
-FROM perl:5.34
+FROM perl:5.36
 
 # Move it
 WORKDIR /opt
@@ -8,6 +8,7 @@ COPY migrations/ ./migrations/
 COPY public/ ./public/
 COPY t/ ./t/
 COPY templates/ ./templates/
+COPY .tom.url .
 COPY cpanfile .
 COPY guestbook-ng.conf .
 COPY guestbook-ng.pl .
