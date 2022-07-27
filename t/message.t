@@ -12,10 +12,10 @@ my $t      = Test::Mojo->new($script);
 $t->ua->max_redirects(0);
 
 # This one is not spam
-$t->get_ok('/message/3')->status_is(200)
+$t->get_ok('/message/8')->status_is(200)
     ->text_is(h2 => 'Messages from the World Wide Web');
 # This one _is_ spam
-$t->get_ok('/message/2')->status_is(200)
+$t->get_ok('/message/19')->status_is(200)
     ->text_is(h2 => 'Messages from the World Wide Web');
 # This one is deleted
 $t->get_ok('/message/1')->status_is(404)
