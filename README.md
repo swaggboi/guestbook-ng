@@ -65,4 +65,3 @@ Add the `-v` option for more verbose output
 ## TODOs
 
 1. Do something about the hardcoded URL in Webhook stuff
-1. Implement try/catch for Webhook since we're using Perl 5.36
