@@ -1,5 +1,3 @@
-#!/usr/bin/env perl
-
 package GuestbookNg::Model::Counter;
 
 use Mojo::Base -base, -signatures;
