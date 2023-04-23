@@ -55,12 +55,23 @@ Add the `-v` option for more verbose output
 
 ### Tag
 
-    docker tag guestbook-ng \
-        us-east4-docker.pkg.dev/www-swagg/guestbook-ng/guestbook-ng
+    podman tag guestbook-ng git.n4vn33t.com/swag/guestbook-ng
 
 ### Push
 
-    docker push us-east4-docker.pkg.dev/www-swagg/guestbook-ng/guestbook-ng
+    docker push git.n4vn33t.com/swag/guestbook-ng
+
+### Pull
+
+    podman pull git.n4vn33t.com/swag/guestbook-ng
+
+### Run
+
+    podman run -dt --rm --name guestbook-ng -p 3001:3000 guestbook-ng:latest
+
+### Generate unit file
+
+    podman generate systemd --files --new --name guestbook-ng
 
 ## TODOs
 
