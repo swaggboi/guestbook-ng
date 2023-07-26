@@ -55,15 +55,15 @@ Add the `-v` option for more verbose output
 
 ### Tag
 
-    podman tag guestbook-ng git.n4vn33t.com/swag/guestbook-ng
+    podman tag guestbook-ng git.minimally.online/swaggboi/guestbook-ng
 
 ### Push
 
-    docker push git.n4vn33t.com/swag/guestbook-ng
+    docker push git.minimally.online/swaggboi/guestbook-ng
 
 ### Pull
 
-    podman pull git.n4vn33t.com/swag/guestbook-ng
+    podman pull git.minimally.online/swaggboi/guestbook-ng
 
 ### Run
 
