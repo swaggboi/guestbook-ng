@@ -51,7 +51,7 @@ Add the `-v` option for more verbose output
 
 ### Build
 
-    docker build -t guestbook-ng .
+    podman build -t guestbook-ng .
 
 ### Tag
 
@@ -59,7 +59,7 @@ Add the `-v` option for more verbose output
 
 ### Push
 
-    docker push git.minimally.online/swaggboi/guestbook-ng
+    podman push git.minimally.online/swaggboi/guestbook-ng
 
 ### Pull
 
